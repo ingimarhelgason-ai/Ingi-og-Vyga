@@ -242,6 +242,21 @@
       .proj-overlay-gallery { grid-template-columns: 1fr; }
       .proj-overlay-gallery .wide { grid-column: span 1; aspect-ratio: 4/3; }
     }
+
+    /* LANGUAGE SWITCHER */
+    .lang-switcher { display: flex; gap: 0.4rem; align-items: center; margin-left: 1.5rem; }
+    .lang-btn { background: none; border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: var(--grey); font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.1em; padding: 0.25rem 0.55rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
+    .lang-btn:hover { color: var(--offwhite); border-color: rgba(255,255,255,0.35); }
+    .lang-btn.active { background: var(--rust); border-color: var(--rust); color: var(--offwhite); }
+
+    /* Hide all lang elements by default, show only active */
+    [data-lang] { display: none; }
+    :root[data-active-lang="en"] [data-lang="en"] { display: revert; }
+    :root[data-active-lang="is"] [data-lang="is"] { display: revert; }
+    :root[data-active-lang="da"] [data-lang="da"] { display: revert; }
+    :root[data-active-lang="lt"] [data-lang="lt"] { display: revert; }
+
+    @media (max-width: 768px) { .lang-switcher { margin-left: 0; margin-top: 1.5rem; } }
 </style>
 </head>
 <body>
@@ -249,11 +264,17 @@
 <nav>
   <a href="#" class="nav-logo">Ingi <span>&</span> Vyga — Smiðir & Verktakar</a>
   <ul class="nav-links">
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#team">About Us</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+    <li><a href="#projects" data-lang="en">Projects</a><a href="#projects" data-lang="is">Verkefni</a><a href="#projects" data-lang="da">Projekter</a><a href="#projects" data-lang="lt">Projektai</a></li>
+    <li><a href="#team" data-lang="en">About Us</a><a href="#team" data-lang="is">Um okkur</a><a href="#team" data-lang="da">Om os</a><a href="#team" data-lang="lt">Apie mus</a></li>
+    <li><a href="#services" data-lang="en">Services</a><a href="#services" data-lang="is">Þjónusta</a><a href="#services" data-lang="da">Ydelser</a><a href="#services" data-lang="lt">Paslaugos</a></li>
+    <li><a href="#contact" class="nav-cta" data-lang="en">Get in Touch</a><a href="#contact" class="nav-cta" data-lang="is">Hafðu samband</a><a href="#contact" class="nav-cta" data-lang="da">Kontakt</a><a href="#contact" class="nav-cta" data-lang="lt">Susisiekite</a></li>
   </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('is')">IS</button>
+    <button class="lang-btn" onclick="setLang('da')">DA</button>
+    <button class="lang-btn" onclick="setLang('lt')">LT</button>
+  </div>
   <div class="nav-hamburger" onclick="document.getElementById('mobileNav').classList.add('open')">
     <span></span><span></span><span></span>
   </div>
@@ -261,44 +282,86 @@
 
 <div class="nav-mobile" id="mobileNav">
   <button class="nav-mobile-close" onclick="document.getElementById('mobileNav').classList.remove('open')">✕</button>
-  <a href="#projects" onclick="document.getElementById('mobileNav').classList.remove('open')">Projects</a>
-  <a href="#team" onclick="document.getElementById('mobileNav').classList.remove('open')">About Us</a>
-  <a href="#services" onclick="document.getElementById('mobileNav').classList.remove('open')">Services</a>
-  <a href="#contact" onclick="document.getElementById('mobileNav').classList.remove('open')">Get in Touch</a>
+  <a href="#projects" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="en">Projects</a>
+  <a href="#projects" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="is">Verkefni</a>
+  <a href="#projects" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="da">Projekter</a>
+  <a href="#projects" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="lt">Projektai</a>
+  <a href="#team" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="en">About Us</a>
+  <a href="#team" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="is">Um okkur</a>
+  <a href="#team" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="da">Om os</a>
+  <a href="#team" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="lt">Apie mus</a>
+  <a href="#services" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="en">Services</a>
+  <a href="#services" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="is">Þjónusta</a>
+  <a href="#services" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="da">Ydelser</a>
+  <a href="#services" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="lt">Paslaugos</a>
+  <a href="#contact" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="en">Get in Touch</a>
+  <a href="#contact" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="is">Hafðu samband</a>
+  <a href="#contact" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="da">Kontakt</a>
+  <a href="#contact" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="lt">Susisiekite</a>
+  <div class="lang-switcher" style="margin-top:2rem;">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('is')">IS</button>
+    <button class="lang-btn" onclick="setLang('da')">DA</button>
+    <button class="lang-btn" onclick="setLang('lt')">LT</button>
+  </div>
 </div>
 
 <section class="hero">
   <div class="hero-left">
-    <p class="hero-tag">Residential &amp; Commercial Carpentry — Reykjavík</p>
+    <p class="hero-tag" data-lang="en">Residential &amp; Commercial Carpentry — Reykjavík</p>
+    <p class="hero-tag" data-lang="is">Húsasmíði &amp; Verktakar — Reykjavík</p>
+    <p class="hero-tag" data-lang="da">Bolig &amp; Erhverv Tømrerarbejde — Reykjavík</p>
+    <p class="hero-tag" data-lang="lt">Gyvenamųjų ir komercinių patalpų statyba — Reykjavík</p>
     <h1 class="hero-title">Plan.<br>Build.<br><em>Finish.</em></h1>
-    <p class="hero-sub">Two experienced tradesmen with a passion for quality work. We take on projects of all sizes — and we always stand behind our work.</p>
+    <p class="hero-sub" data-lang="en">Two experienced tradesmen with a passion for quality work. We take on projects of all sizes — and we always stand behind our work.</p>
+    <p class="hero-sub" data-lang="is">Tveir reyndir iðnaðarmenn með ástríðu fyrir gæðavinnu. Við tökum að okkur verkefni af öllum stærðum — og við stöndum alltaf að baki verkinu okkar.</p>
+    <p class="hero-sub" data-lang="da">To erfarne håndværkere med en passion for kvalitetsarbejde. Vi påtager os projekter af alle størrelser — og vi står altid bag vores arbejde.</p>
+    <p class="hero-sub" data-lang="lt">Du patyrę amatininkai, atsidavę kokybiškam darbui. Imamės projektų bet kokio dydžio — ir visada stovime už savo darbą.</p>
     <div class="hero-buttons">
-      <a href="#projects" class="btn-primary">View Projects</a>
-      <a href="#team" class="btn-ghost">About Us</a>
+      <a href="#projects" class="btn-primary" data-lang="en">View Projects</a>
+      <a href="#projects" class="btn-primary" data-lang="is">Skoða verkefni</a>
+      <a href="#projects" class="btn-primary" data-lang="da">Se projekter</a>
+      <a href="#projects" class="btn-primary" data-lang="lt">Peržiūrėti projektus</a>
+      <a href="#team" class="btn-ghost" data-lang="en">About Us</a>
+      <a href="#team" class="btn-ghost" data-lang="is">Um okkur</a>
+      <a href="#team" class="btn-ghost" data-lang="da">Om os</a>
+      <a href="#team" class="btn-ghost" data-lang="lt">Apie mus</a>
     </div>
   </div>
   <div class="hero-right">
     <img src="images/image_01.jpg" alt="Dirty Burger & Ribs"/>
   </div>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Years Experience</div></div>
-    <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Projects Completed</div></div>
+    <div class="stat"><div class="stat-num">8+</div><div class="stat-label" data-lang="en">Years Experience</div><div class="stat-label" data-lang="is">Ára reynsla</div><div class="stat-label" data-lang="da">Års erfaring</div><div class="stat-label" data-lang="lt">Metų patirtis</div></div>
+    <div class="stat"><div class="stat-num">10+</div><div class="stat-label" data-lang="en">Projects Completed</div><div class="stat-label" data-lang="is">Verkefni lokið</div><div class="stat-label" data-lang="da">Afsluttede projekter</div><div class="stat-label" data-lang="lt">Užbaigtų projektų</div></div>
   </div>
 </section>
 
 <section id="projects">
   <div style="margin-bottom:3rem;">
-    <p class="section-tag">Portfolio</p>
-    <h2 class="section-title">Selected Projects</h2>
+    <p class="section-tag" data-lang="en">Portfolio</p>
+    <p class="section-tag" data-lang="is">Verkefni</p>
+    <p class="section-tag" data-lang="da">Portfolio</p>
+    <p class="section-tag" data-lang="lt">Portfelis</p>
+    <h2 class="section-title" data-lang="en">Selected Projects</h2>
+    <h2 class="section-title" data-lang="is">Valin verkefni</h2>
+    <h2 class="section-title" data-lang="da">Udvalgte projekter</h2>
+    <h2 class="section-title" data-lang="lt">Pasirinkti projektai</h2>
   </div>
   
     <div class="proj-card" onclick="openProject('dirty-burger')" style="cursor:pointer;">
       <div class="proj-photo"><img src="images/image_16.jpg" alt="Dirty Burger & Ribs"/></div>
       <div class="proj-info">
         <div class="proj-num">01</div>
-        <p class="proj-cat">Restaurant · 2023</p>
+        <p class="proj-cat" data-lang="en">Restaurant · 2023</p>
+        <p class="proj-cat" data-lang="is">Veitingastaður · 2023</p>
+        <p class="proj-cat" data-lang="da">Restaurant · 2023</p>
+        <p class="proj-cat" data-lang="lt">Restoranas · 2023</p>
         <h3 class="proj-title">Dirty Burger & Ribs — Fellsmúli</h3>
-        <p class="proj-desc">Total renovation inside and outside of an existing restaurant — new floors, lighting, two new bathrooms, tile work and a custom steel-clad service counter.</p>
+        <p class="proj-desc" data-lang="en">Total renovation inside and outside of an existing restaurant — new floors, lighting, two new bathrooms, tile work and a custom steel-clad service counter.</p>
+        <p class="proj-desc" data-lang="is">Heildarlegar endurbætur að innan og utan á veitingastað — nýir gólf, lýsing, tvær nýjar klósettaðstaður, flísalagning og sérsmiðaður þjónustuborð klæddur stáli.</p>
+        <p class="proj-desc" data-lang="da">Total renovering indvendigt og udvendigt af en eksisterende restaurant — nye gulve, belysning, to nye badeværelser, flisearbejde og en specialbygget stålbeklædt servicedisk.</p>
+        <p class="proj-desc" data-lang="lt">Visiškas esamo restorano renovavimas viduje ir išorėje — naujos grindys, apšvietimas, du nauji tualetai, plytelių darbai ir individualiai pagamintas plieninis aptarnavimo stalas.</p>
         <div class="proj-tags"><span class="proj-tag">Restaurant</span><span class="proj-tag">Full Renovation</span><span class="proj-tag">Subcontractor Management</span></div>
       </div>
     </div>
@@ -307,9 +370,18 @@
       <div class="proj-photo"><img src="images/image_03.jpg" alt="Cladding, New Windows & Glass Railing"/></div>
       <div class="proj-info">
         <div class="proj-num">02</div>
-        <p class="proj-cat">Residential · Exterior</p>
-        <h3 class="proj-title">Cladding, New Windows & Glass Railing</h3>
-        <p class="proj-desc">Full exterior renovation on a two-storey house — corrugated cladding, new window and door installation, and a glass railing on the balcony.</p>
+        <p class="proj-cat" data-lang="en">Residential · Exterior</p>
+        <p class="proj-cat" data-lang="is">Íbúðarhús · Útveggir</p>
+        <p class="proj-cat" data-lang="da">Bolig · Udvendig</p>
+        <p class="proj-cat" data-lang="lt">Gyvenamasis · Išorė</p>
+        <h3 class="proj-title" data-lang="en">Cladding, New Windows & Glass Railing</h3>
+        <h3 class="proj-title" data-lang="is">Klæðning, Nýjar Gluggur & Glerhandriðið</h3>
+        <h3 class="proj-title" data-lang="da">Beklædning, Nye Vinduer & Glashegn</h3>
+        <h3 class="proj-title" data-lang="lt">Apkala, Nauji Langai & Stiklo Turėklai</h3>
+        <p class="proj-desc" data-lang="en">Full exterior renovation on a two-storey house — corrugated cladding, new window and door installation, and a glass railing on the balcony.</p>
+        <p class="proj-desc" data-lang="is">Heildarendurbætur á útvegg tveggja hæða hús — bylgjublikkklæðning, nýir gluggar og hurðir, og glerhandriði á svölum.</p>
+        <p class="proj-desc" data-lang="da">Fuld udvendig renovering af et tohuses hus — bølgeblik beklædning, nye vinduer og døre samt glasrækværk på balkonen.</p>
+        <p class="proj-desc" data-lang="lt">Visiškas dviejų aukštų namo išorės renovavimas — banguota apkala, naujų langų ir durų montavimas bei stiklo turėklai balkone.</p>
         <div class="proj-tags"><span class="proj-tag">Corrugated Cladding</span><span class="proj-tag">Window Installation</span><span class="proj-tag">Glass Railing</span></div>
       </div>
     </div>
@@ -318,9 +390,18 @@
       <div class="proj-photo"><img src="images/image_27.jpg" alt="Full Interior Fit-out — Shell to Finished Home"/></div>
       <div class="proj-info">
         <div class="proj-num">03</div>
-        <p class="proj-cat">Residential · Interior</p>
-        <h3 class="proj-title">Full Interior Fit-out — Shell to Finished Home</h3>
-        <p class="proj-desc">Complete interior work on a house from bare shell to finished home — plastering, painting, ceiling boards, new stairs, new doors and full fit-out.</p>
+        <p class="proj-cat" data-lang="en">Residential · Interior</p>
+        <p class="proj-cat" data-lang="is">Íbúðarhús · Innréttingar</p>
+        <p class="proj-cat" data-lang="da">Bolig · Indvendig</p>
+        <p class="proj-cat" data-lang="lt">Gyvenamasis · Interjeras</p>
+        <h3 class="proj-title" data-lang="en">Full Interior Fit-out — Shell to Finished Home</h3>
+        <h3 class="proj-title" data-lang="is">Heildar Innréttingar — Frá Grind að Fullklárað Heimili</h3>
+        <h3 class="proj-title" data-lang="da">Fuld Indvendig Indretning — Fra Råhus til Færdigt Hjem</h3>
+        <h3 class="proj-title" data-lang="lt">Visiškas Interjero Įrengimas — Nuo Karkaso iki Gatavo Namo</h3>
+        <p class="proj-desc" data-lang="en">Complete interior work on a house from bare shell to finished home — plastering, painting, ceiling boards, new stairs, new doors and full fit-out.</p>
+        <p class="proj-desc" data-lang="is">Heildarvinna að innréttingum hús frá berum grind að fullklárað heimili — múrning, málning, þakbretti, nýjar stigi, nýjar hurðir og heildar innréttingar.</p>
+        <p class="proj-desc" data-lang="da">Komplet indvendigt arbejde på et hus fra rå skal til færdigt hjem — pudsning, maling, loftbrædder, ny trappe, nye døre og fuld indretning.</p>
+        <p class="proj-desc" data-lang="lt">Visiškas namo interjero darbas nuo tuščio karkaso iki gatavo namo — tinkas, dažymas, lubų lentos, nauji laiptai, naujos durys ir visiškas įrengimas.</p>
         <div class="proj-tags"><span class="proj-tag">Plastering &amp; Painting</span><span class="proj-tag">Ceiling Boards</span><span class="proj-tag">Stairs &amp; Doors</span></div>
       </div>
     </div>
@@ -329,9 +410,18 @@
       <div class="proj-photo"><img src="images/Kopavogur_4.jpg" alt="Cladding — Kópavogur"/></div>
       <div class="proj-info">
         <div class="proj-num">04</div>
-        <p class="proj-cat">Residential · Exterior · 2018</p>
-        <h3 class="proj-title">Cladding — Kópavogur</h3>
-        <p class="proj-desc">Full exterior aluminium cladding on a residential house in Kópavogur — dark corrugated smábára installed in winter conditions.</p>
+        <p class="proj-cat" data-lang="en">Residential · Exterior · 2018</p>
+        <p class="proj-cat" data-lang="is">Íbúðarhús · Útveggir · 2018</p>
+        <p class="proj-cat" data-lang="da">Bolig · Udvendig · 2018</p>
+        <p class="proj-cat" data-lang="lt">Gyvenamasis · Išorė · 2018</p>
+        <h3 class="proj-title" data-lang="en">Cladding — Kópavogur</h3>
+        <h3 class="proj-title" data-lang="is">Klæðning — Kópavogur</h3>
+        <h3 class="proj-title" data-lang="da">Beklædning — Kópavogur</h3>
+        <h3 class="proj-title" data-lang="lt">Apkala — Kópavogur</h3>
+        <p class="proj-desc" data-lang="en">Full exterior aluminium cladding on a residential house in Kópavogur — dark corrugated smábára installed in winter conditions.</p>
+        <p class="proj-desc" data-lang="is">Heildar álklæðning á íbúðarhúsi í Kópavogi — dökk bylgjublikkklæðning sett upp í vetrarskilyrðum.</p>
+        <p class="proj-desc" data-lang="da">Fuld udvendig aluminiumsbeklædning på et parcelhus i Kópavogur — mørk bølgeblik beklædning monteret under vinterbetingelser.</p>
+        <p class="proj-desc" data-lang="lt">Visiškas aliuminio apkala gyvenamajame name Kópavogure — tamsi banguota smábára, sumontuota žiemos sąlygomis.</p>
         <div class="proj-tags"><span class="proj-tag">Corrugated Cladding</span><span class="proj-tag">Smábára</span><span class="proj-tag">Winter Work</span></div>
       </div>
     </div>
@@ -340,9 +430,18 @@
       <div class="proj-photo"><img src="images/image_06.jpg" alt="Full Bathroom Renovation"/></div>
       <div class="proj-info">
         <div class="proj-num">05</div>
-        <p class="proj-cat">Residential · Bathroom</p>
-        <h3 class="proj-title">Full Bathroom Renovation</h3>
-        <p class="proj-desc">Complete bathroom renovation from scratch — plumbing, screeded floor, framing and tiling. Timelapse video coming soon.</p>
+        <p class="proj-cat" data-lang="en">Residential · Bathroom</p>
+        <p class="proj-cat" data-lang="is">Íbúðarhús · Baðherbergi</p>
+        <p class="proj-cat" data-lang="da">Bolig · Badeværelse</p>
+        <p class="proj-cat" data-lang="lt">Gyvenamasis · Vonios kambarys</p>
+        <h3 class="proj-title" data-lang="en">Full Bathroom Renovation</h3>
+        <h3 class="proj-title" data-lang="is">Heildar Baðherbergisendurbætur</h3>
+        <h3 class="proj-title" data-lang="da">Fuld Badeværelsesrenovering</h3>
+        <h3 class="proj-title" data-lang="lt">Visiškas Vonios Kambario Renovavimas</h3>
+        <p class="proj-desc" data-lang="en">Complete bathroom renovation from scratch — plumbing, screeded floor, framing and tiling. Timelapse video coming soon.</p>
+        <p class="proj-desc" data-lang="is">Heildar baðherbergisendurbætur frá grunni — pípulagnir, sléttur gólf, grind og flísalagning. Tímaskriðarmyndband kemur fljótlega.</p>
+        <p class="proj-desc" data-lang="da">Komplet badeværelsesrenovering fra bunden — VVS, afrettet gulv, indramning og flisearbejde. Timelapse video kommer snart.</p>
+        <p class="proj-desc" data-lang="lt">Visiškas vonios kambario renovavimas nuo nulio — santechnika, išlyginti grindys, karkasas ir plytelių klojimas. Greitu laiku bus pateiktas timelapse vaizdo įrašas.</p>
         <div class="proj-tags"><span class="proj-tag">Plumbing</span><span class="proj-tag">Tiling</span><span class="proj-tag">Full Renovation</span></div>
       </div>
     </div>
@@ -350,12 +449,27 @@
 
 <section id="team">
   <div style="margin-bottom:1rem;">
-    <p class="section-tag">About Us</p>
-    <h2 class="section-title">The people behind<br>the work.</h2>
+    <p class="section-tag" data-lang="en">About Us</p>
+    <p class="section-tag" data-lang="is">Um okkur</p>
+    <p class="section-tag" data-lang="da">Om os</p>
+    <p class="section-tag" data-lang="lt">Apie mus</p>
+    <h2 class="section-title" data-lang="en">The people behind<br>the work.</h2>
+    <h2 class="section-title" data-lang="is">Fólkið á bak við<br>verkið.</h2>
+    <h2 class="section-title" data-lang="da">Menneskene bag<br>arbejdet.</h2>
+    <h2 class="section-title" data-lang="lt">Žmonės už<br>darbo.</h2>
   </div>
-  <p class="team-intro">We've been building things with our hands for a long time. We take pride in our work, we show up on time, and we don't leave until it's right.</p>
-  <p class="team-intro" style="margin-top:1rem;">We know that renovation projects can be stressful. We don't just show up as carpenters — we show up as your partners. And when obstacles come up, because they always do, we find a solution and keep things moving. We are respectful of your home, we understand that things change, and we are flexible when they do.</p>
-  <p class="team-intro" style="margin-top:1rem;">We also like to get involved early. If we can sit down with you at the design and idea phase, we can share our experience and help shape the project from the very beginning — not just execute what we're handed. Your project becomes our project.</p>
+  <p class="team-intro" data-lang="en">We've been building things with our hands for a long time. We take pride in our work, we show up on time, and we don't leave until it's right.</p>
+  <p class="team-intro" data-lang="is">Við höfum byggt hluti með höndunum í langan tíma. Við erum stolt af verkinu okkar, við mætum á réttum tíma og við förum ekki fyrr en það er rétt.</p>
+  <p class="team-intro" data-lang="da">Vi har bygget ting med vores hænder i lang tid. Vi er stolte af vores arbejde, vi møder til tiden, og vi går ikke, før det er rigtigt.</p>
+  <p class="team-intro" data-lang="lt">Mes jau seniai statome daiktus savo rankomis. Mes didžiuojamės savo darbu, atvykstame laiku ir neišeiname, kol viskas netobula.</p>
+  <p class="team-intro" style="margin-top:1rem;" data-lang="en">We know that renovation projects can be stressful. We don't just show up as carpenters — we show up as your partners. And when obstacles come up, because they always do, we find a solution and keep things moving. We are respectful of your home, we understand that things change, and we are flexible when they do.</p>
+  <p class="team-intro" style="margin-top:1rem;" data-lang="is">Við vitum að endurbótaverkefni geta verið streituvaldandi. Við mætum ekki bara sem trésmíðar — við mætum sem samstarfsaðilar þínir. Og þegar hindranir koma upp, því þær gera það alltaf, finnum við lausn og höldum áfram. Við sýnum heimili þínu virðingu, við skiljum að hlutir breytast og við erum sveigjanleg þegar þeir gera það.</p>
+  <p class="team-intro" style="margin-top:1rem;" data-lang="da">Vi ved, at renoveringsprojekter kan være stressende. Vi møder ikke bare op som tømrere — vi møder op som dine partnere. Og når forhindringer opstår, for det gør de altid, finder vi en løsning og holder tingene i gang. Vi respekterer dit hjem, vi forstår, at tingene ændrer sig, og vi er fleksible, når de gør.</p>
+  <p class="team-intro" style="margin-top:1rem;" data-lang="lt">Mes žinome, kad renovacijos projektai gali būti įtemptus. Mes neatvykstame tiesiog kaip staliai — mes atvykstame kaip jūsų partneriai. Ir kai iškyla kliūčių, nes jos visada iškyla, mes randame sprendimą ir judame toliau. Mes gerbiame jūsų namus, suprantame, kad dalykai keičiasi, ir esame lankstūs, kai taip nutinka.</p>
+  <p class="team-intro" style="margin-top:1rem;" data-lang="en">We also like to get involved early. If we can sit down with you at the design and idea phase, we can share our experience and help shape the project from the very beginning — not just execute what we're handed. Your project becomes our project.</p>
+  <p class="team-intro" style="margin-top:1rem;" data-lang="is">Okkur líkar líka að koma inn snemma. Ef við getum sest niður með þér á hönnunar- og hugmyndafasanum, getum við deilt reynslu okkar og hjálpað til við að móta verkefnið frá upphafi — ekki bara framkvæmt það sem við fáum afhent. Verkefnið þitt verður verkefni okkar.</p>
+  <p class="team-intro" style="margin-top:1rem;" data-lang="da">Vi kan også godt lide at komme tidligt ind. Hvis vi kan sætte os ned med dig i design- og idéfasen, kan vi dele vores erfaring og hjælpe med at forme projektet fra begyndelsen — ikke bare udføre det, vi får i hånden. Dit projekt bliver vores projekt.</p>
+  <p class="team-intro" style="margin-top:1rem;" data-lang="lt">Mums taip pat patinka įsitraukti anksti. Jei galime atsisėsti su jumis dizaino ir idėjų fazėje, galime pasidalinti savo patirtimi ir padėti formuoti projektą nuo pat pradžių — o ne tik vykdyti tai, kas mums duota. Jūsų projektas tampa mūsų projektu.</p>
   <div class="team-grid">
     <div class="team-card">
       <div class="team-photo"><img src="images/image_07.jpg" alt="Ingi"/></div>
@@ -363,8 +477,14 @@
         <div class="team-flag">🇮🇸</div>
         <h3 class="team-name">Ingi</h3>
         <p class="team-fullname">Ingimar Helgason</p>
-        <span class="team-role">Carpenter &amp; Project Manager</span>
-        <p class="team-bio">Carpenter and project manager. Ingi handles communication, quotes and coordination — making sure every job runs smoothly from start to finish. He speaks Icelandic, English and Danish.</p>
+        <span class="team-role" data-lang="en">Carpenter &amp; Project Manager</span>
+        <span class="team-role" data-lang="is">Trésmíðir &amp; Verkefnastjóri</span>
+        <span class="team-role" data-lang="da">Tømrer &amp; Projektleder</span>
+        <span class="team-role" data-lang="lt">Stalius &amp; Projektų vadovas</span>
+        <p class="team-bio" data-lang="en">Carpenter and project manager. Ingi handles communication, quotes and coordination — making sure every job runs smoothly from start to finish. He speaks Icelandic, English and Danish.</p>
+        <p class="team-bio" data-lang="is">Trésmíðir og verkefnastjóri. Ingi sér um samskipti, tilboð og samhæfingu — tryggir að hvert verk gangi vel frá upphafi til enda. Hann talar íslensku, ensku og dönsku.</p>
+        <p class="team-bio" data-lang="da">Tømrer og projektleder. Ingi håndterer kommunikation, tilbud og koordinering — sikrer at hvert job kører glat fra start til slut. Han taler islandsk, engelsk og dansk.</p>
+        <p class="team-bio" data-lang="lt">Stalius ir projektų vadovas. Ingi tvarko komunikaciją, pasiūlymus ir koordinavimą — užtikrina, kad kiekvienas darbas vyktų sklandžiai nuo pradžios iki pabaigos. Jis kalba islandiškai, angliškai ir daniškai.</p>
       </div>
     </div>
     <div class="team-card">
@@ -373,8 +493,14 @@
         <div class="team-flag">🇱🇹</div>
         <h3 class="team-name">Vyga</h3>
         <p class="team-fullname">Vygandas Gurinas</p>
-        <span class="team-role">Carpenter</span>
-        <p class="team-bio">Carpenter with extensive experience across Europe — having worked in Lithuania, Sweden, Germany, England and Finland before settling in Iceland in 2017. He brings a wide range of skills and a high standard of craft to every project. He speaks Lithuanian, English and Russian.</p>
+        <span class="team-role" data-lang="en">Carpenter</span>
+        <span class="team-role" data-lang="is">Trésmíðir</span>
+        <span class="team-role" data-lang="da">Tømrer</span>
+        <span class="team-role" data-lang="lt">Stalius</span>
+        <p class="team-bio" data-lang="en">Carpenter with extensive experience across Europe — having worked in Lithuania, Sweden, Germany, England and Finland before settling in Iceland in 2017. He brings a wide range of skills and a high standard of craft to every project. He speaks Lithuanian, English and Russian.</p>
+        <p class="team-bio" data-lang="is">Trésmíðir með víðtæka reynslu víðs vegar um Evrópu — hafði unnið í Litháen, Svíþjóð, Þýskalandi, Englandi og Finnlandi áður en hann settist að á Íslandi árið 2017. Hann kemur með breitt hæfni og hátt handverksgæðastaðal í hvert verkefni. Hann talar litháísku, ensku og rússnesku.</p>
+        <p class="team-bio" data-lang="da">Tømrer med omfattende erfaring på tværs af Europa — har arbejdet i Litauen, Sverige, Tyskland, England og Finland, før han slog sig ned på Island i 2017. Han bringer et bredt spektrum af færdigheder og høj håndværksstandard til hvert projekt. Han taler litauisk, engelsk og russisk.</p>
+        <p class="team-bio" data-lang="lt">Stalius su plačia patirtimi visoje Europoje — dirbo Lietuvoje, Švedijoje, Vokietijoje, Anglijoje ir Suomijoje prieš apsigyvenant Islandijoje 2017 metais. Kiekviename projekte jis demonstruoja platų įgūdžių spektrą ir aukštus amato standartus. Jis kalba lietuviškai, angliškai ir rusiškai.</p>
       </div>
     </div>
   </div>
@@ -383,33 +509,139 @@
 <section id="process">
   <div class="process-grid">
     <div class="process-left">
-      <p class="section-tag">How We Work</p>
-      <h2 class="section-title">Simple process.<br>Outstanding<br>results.</h2>
-      <p>We believe great work starts with clear communication.</p>
+      <p class="section-tag" data-lang="en">How We Work</p>
+      <p class="section-tag" data-lang="is">Hvernig við vinnum</p>
+      <p class="section-tag" data-lang="da">Sådan arbejder vi</p>
+      <p class="section-tag" data-lang="lt">Kaip mes dirbame</p>
+      <h2 class="section-title" data-lang="en">Simple process.<br>Outstanding<br>results.</h2>
+      <h2 class="section-title" data-lang="is">Einföld aðferð.<br>Framúrskarandi<br>niðurstöður.</h2>
+      <h2 class="section-title" data-lang="da">Enkel proces.<br>Fremragende<br>resultater.</h2>
+      <h2 class="section-title" data-lang="lt">Paprastas procesas.<br>Puikūs<br>rezultatai.</h2>
+      <p data-lang="en">We believe great work starts with clear communication.</p>
+      <p data-lang="is">Við trúum því að frábær verk byrji með skýrri samskiptum.</p>
+      <p data-lang="da">Vi tror på, at godt arbejde starter med klar kommunikation.</p>
+      <p data-lang="lt">Mes tikime, kad puikus darbas prasideda nuo aiškaus bendravimo.</p>
     </div>
     <div class="process-steps">
-      <div class="process-step"><div class="step-num">01</div><div class="step-content"><h3>Consultation</h3><p>We meet and go through your needs. You get an honest assessment of the project.</p></div></div>
-      <div class="process-step"><div class="step-num">02</div><div class="step-content"><h3>Quote & Planning</h3><p>You get a clear quote with a timeline — no surprise changes.</p></div></div>
-      <div class="process-step"><div class="step-num">03</div><div class="step-content"><h3>Execution</h3><p>Vyga and the team handle the work with full professionalism.</p></div></div>
-      <div class="process-step"><div class="step-num">04</div><div class="step-content"><h3>Handover & Follow-up</h3><p>We walk through the finished work with you and make sure you are 100% satisfied.</p></div></div>
+      <div class="process-step"><div class="step-num">01</div><div class="step-content">
+        <h3 data-lang="en">Consultation</h3><h3 data-lang="is">Ráðgjöf</h3><h3 data-lang="da">Konsultation</h3><h3 data-lang="lt">Konsultacija</h3>
+        <p data-lang="en">We meet and go through your needs. You get an honest assessment of the project.</p>
+        <p data-lang="is">Við hittumst og förum yfir þarfir þínar. Þú færð heiðlægt mat á verkefninu.</p>
+        <p data-lang="da">Vi mødes og gennemgår dine behov. Du får en ærlig vurdering af projektet.</p>
+        <p data-lang="lt">Susitinkame ir aptariame jūsų poreikius. Gausite sąžiningą projekto įvertinimą.</p>
+      </div></div>
+      <div class="process-step"><div class="step-num">02</div><div class="step-content">
+        <h3 data-lang="en">Quote & Planning</h3><h3 data-lang="is">Tilboð & Skipulagning</h3><h3 data-lang="da">Tilbud & Planlægning</h3><h3 data-lang="lt">Pasiūlymas & Planavimas</h3>
+        <p data-lang="en">You get a clear quote with a timeline — no surprise changes.</p>
+        <p data-lang="is">Þú færð skýrt tilboð með tímalínu — engar óvæntar breytingar.</p>
+        <p data-lang="da">Du får et klart tilbud med en tidslinje — ingen overraskende ændringer.</p>
+        <p data-lang="lt">Gausite aiškų pasiūlymą su grafiku — jokių netikėtų pakeitimų.</p>
+      </div></div>
+      <div class="process-step"><div class="step-num">03</div><div class="step-content">
+        <h3 data-lang="en">Execution</h3><h3 data-lang="is">Framkvæmd</h3><h3 data-lang="da">Udførelse</h3><h3 data-lang="lt">Vykdymas</h3>
+        <p data-lang="en">Vyga and the team handle the work with full professionalism.</p>
+        <p data-lang="is">Vyga og teymið sér um verkið með fullri fagmennsku.</p>
+        <p data-lang="da">Vyga og teamet håndterer arbejdet med fuld professionalisme.</p>
+        <p data-lang="lt">Vyga ir komanda atlieka darbą visiškai profesionaliai.</p>
+      </div></div>
+      <div class="process-step"><div class="step-num">04</div><div class="step-content">
+        <h3 data-lang="en">Handover & Follow-up</h3><h3 data-lang="is">Afhending & Uppfylling</h3><h3 data-lang="da">Aflevering & Opfølgning</h3><h3 data-lang="lt">Perdavimas & Tolesnis sekimas</h3>
+        <p data-lang="en">We walk through the finished work with you and make sure you are 100% satisfied.</p>
+        <p data-lang="is">Við förum yfir lokið verk með þér og tryggjum að þú sért 100% ánægð/ur.</p>
+        <p data-lang="da">Vi gennemgår det færdige arbejde med dig og sikrer, at du er 100% tilfreds.</p>
+        <p data-lang="lt">Apžiūrime baigtą darbą kartu su jumis ir užtikriname, kad esate 100% patenkinti.</p>
+      </div></div>
     </div>
   </div>
 </section>
 
 <section id="services">
   <div style="margin-bottom:3rem;">
-    <p class="section-tag">Services</p>
-    <h2 class="section-title">What can we<br>do for you?</h2>
-    <p style="margin-top:1.2rem;max-width:560px;color:var(--sand);font-size:0.95rem;line-height:1.8;font-weight:300;">No two projects are the same and we like it that way. Whether it's a single window or a full renovation — exterior, interior or both — we're ready for it. We can also take on full project management, coordinating all subcontractors so you only need to deal with us.</p>
+    <p class="section-tag" data-lang="en">Services</p>
+    <p class="section-tag" data-lang="is">Þjónusta</p>
+    <p class="section-tag" data-lang="da">Ydelser</p>
+    <p class="section-tag" data-lang="lt">Paslaugos</p>
+    <h2 class="section-title" data-lang="en">What can we<br>do for you?</h2>
+    <h2 class="section-title" data-lang="is">Hvað getum við<br>gert fyrir þig?</h2>
+    <h2 class="section-title" data-lang="da">Hvad kan vi<br>gøre for dig?</h2>
+    <h2 class="section-title" data-lang="lt">Ką mes galime<br>padaryti jums?</h2>
+    <p style="margin-top:1.2rem;max-width:560px;color:var(--sand);font-size:0.95rem;line-height:1.8;font-weight:300;" data-lang="en">No two projects are the same and we like it that way. Whether it's a single window or a full renovation — exterior, interior or both — we're ready for it. We can also take on full project management, coordinating all subcontractors so you only need to deal with us.</p>
+    <p style="margin-top:1.2rem;max-width:560px;color:var(--sand);font-size:0.95rem;line-height:1.8;font-weight:300;" data-lang="is">Ekkert tvær verkefni eru eins og við þykist gaman að því. Hvort sem það er einn gluggi eða heildar endurbætur — útveggur, innréttingar eða bæði — erum við tilbúin. Við getum líka tekið að okkur heildar verkefnastjórnun, samhæft alla undirverktaka svo þú þurfir bara að eiga við okkur.</p>
+    <p style="margin-top:1.2rem;max-width:560px;color:var(--sand);font-size:0.95rem;line-height:1.8;font-weight:300;" data-lang="da">Ingen to projekter er ens, og det kan vi lide. Uanset om det er et enkelt vindue eller en fuld renovering — udvendig, indvendig eller begge dele — er vi klar. Vi kan også påtage os fuld projektstyring og koordinere alle underentreprenører, så du kun behøver at have med os at gøre.</p>
+    <p style="margin-top:1.2rem;max-width:560px;color:var(--sand);font-size:0.95rem;line-height:1.8;font-weight:300;" data-lang="lt">Jokie du projektai nėra vienodi ir mums tai patinka. Nesvarbu, ar tai vienas langas, ar visiškas renovavimas — išorė, interjeras ar abu — mes esame pasiruošę. Taip pat galime imtis visiško projektų valdymo, koordinuodami visus subrangovus, kad jums tereikėtų susisiekti tik su mumis.</p>
   </div>
-  <div class="services-grid"><div class="service-item"><div class="service-num">01</div>
-      <h3 class="service-name">Window &amp; Door Installation</h3><p class="service-desc">We install windows and exterior doors — with proper insulation and professional finishing.</p><span class="service-arrow">↗</span></div><div class="service-item"><div class="service-num">02</div>
-      <h3 class="service-name">Exterior Cladding</h3><p class="service-desc">Corrugated cladding and other exterior wall systems — from preparation to finished result.</p><span class="service-arrow">↗</span></div><div class="service-item"><div class="service-num">03</div>
-      <h3 class="service-name">Flooring</h3><p class="service-desc">All types of flooring indoors and out — from preparation to finished result.</p><span class="service-arrow">↗</span></div><div class="service-item"><div class="service-num">04</div>
-      <h3 class="service-name">Kitchen Installation</h3><p class="service-desc">We install kitchens and cabinets with care and precision.</p><span class="service-arrow">↗</span></div><div class="service-item"><div class="service-num">05</div>
-      <h3 class="service-name">Bathrooms</h3><p class="service-desc">Full bathroom renovation from scratch — framing, plumbing prep, fixtures and finishing. We manage all trades including tiling so you only deal with us.</p><span class="service-arrow">↗</span></div><div class="service-item"><div class="service-num">06</div>
-      <h3 class="service-name">Roofing</h3><p class="service-desc">Roof repairs and full replacements — we assess, advise and get it done properly.</p><span class="service-arrow">↗</span></div><div class="service-item"><div class="service-num">07</div>
-      <h3 class="service-name">Full Project Management</h3><p class="service-desc">We take on the whole project — coordinating all subcontractors including plumbers, electricians and tilers. One point of contact, no stress.</p><span class="service-arrow">↗</span></div></div>
+  <div class="services-grid">
+    <div class="service-item"><div class="service-num">01</div>
+      <h3 class="service-name" data-lang="en">Window &amp; Door Installation</h3>
+      <h3 class="service-name" data-lang="is">Gluggur &amp; Hurðarsetning</h3>
+      <h3 class="service-name" data-lang="da">Vindue &amp; Dørmontering</h3>
+      <h3 class="service-name" data-lang="lt">Langų &amp; Durų montavimas</h3>
+      <p class="service-desc" data-lang="en">We install windows and exterior doors — with proper insulation and professional finishing.</p>
+      <p class="service-desc" data-lang="is">Við setjum upp glugga og útidyr — með réttri einangrun og faglegri frágangi.</p>
+      <p class="service-desc" data-lang="da">Vi monterer vinduer og yderdøre — med korrekt isolering og professionel afslutning.</p>
+      <p class="service-desc" data-lang="lt">Montuojame langus ir išorines duris — su tinkama izoliacija ir profesionalia apdaila.</p>
+      <span class="service-arrow">↗</span></div>
+    <div class="service-item"><div class="service-num">02</div>
+      <h3 class="service-name" data-lang="en">Exterior Cladding</h3>
+      <h3 class="service-name" data-lang="is">Útveggjaklæðning</h3>
+      <h3 class="service-name" data-lang="da">Udvendig Beklædning</h3>
+      <h3 class="service-name" data-lang="lt">Išorinė Apkala</h3>
+      <p class="service-desc" data-lang="en">Corrugated cladding and other exterior wall systems — from preparation to finished result.</p>
+      <p class="service-desc" data-lang="is">Bylgjublikkklæðning og aðrar útveggjakerfi — frá undirbúningi að lokaniðurstöðu.</p>
+      <p class="service-desc" data-lang="da">Bølgeblik beklædning og andre udvendige vægssystemer — fra forberedelse til færdigt resultat.</p>
+      <p class="service-desc" data-lang="lt">Banguota apkala ir kitos išorinių sienų sistemos — nuo paruošimo iki galutinio rezultato.</p>
+      <span class="service-arrow">↗</span></div>
+    <div class="service-item"><div class="service-num">03</div>
+      <h3 class="service-name" data-lang="en">Flooring</h3>
+      <h3 class="service-name" data-lang="is">Gólflagning</h3>
+      <h3 class="service-name" data-lang="da">Gulve</h3>
+      <h3 class="service-name" data-lang="lt">Grindys</h3>
+      <p class="service-desc" data-lang="en">All types of flooring indoors and out — from preparation to finished result.</p>
+      <p class="service-desc" data-lang="is">Allar gerðir gólfleggjar inni og úti — frá undirbúningi að lokaniðurstöðu.</p>
+      <p class="service-desc" data-lang="da">Alle typer gulve indendørs og udendørs — fra forberedelse til færdigt resultat.</p>
+      <p class="service-desc" data-lang="lt">Visų tipų grindys viduje ir lauke — nuo paruošimo iki galutinio rezultato.</p>
+      <span class="service-arrow">↗</span></div>
+    <div class="service-item"><div class="service-num">04</div>
+      <h3 class="service-name" data-lang="en">Kitchen Installation</h3>
+      <h3 class="service-name" data-lang="is">Eldhúsuppsetning</h3>
+      <h3 class="service-name" data-lang="da">Køkkenmontering</h3>
+      <h3 class="service-name" data-lang="lt">Virtuvės montavimas</h3>
+      <p class="service-desc" data-lang="en">We install kitchens and cabinets with care and precision.</p>
+      <p class="service-desc" data-lang="is">Við setjum upp eldhús og skápa með umhyggju og nákvæmni.</p>
+      <p class="service-desc" data-lang="da">Vi monterer køkkener og skabe med omhu og præcision.</p>
+      <p class="service-desc" data-lang="lt">Montuojame virtuves ir spintas rūpestingai ir tiksliai.</p>
+      <span class="service-arrow">↗</span></div>
+    <div class="service-item"><div class="service-num">05</div>
+      <h3 class="service-name" data-lang="en">Bathrooms</h3>
+      <h3 class="service-name" data-lang="is">Baðherbergi</h3>
+      <h3 class="service-name" data-lang="da">Badeværelser</h3>
+      <h3 class="service-name" data-lang="lt">Vonios kambariai</h3>
+      <p class="service-desc" data-lang="en">Full bathroom renovation from scratch — framing, plumbing prep, fixtures and finishing. We manage all trades including tiling so you only deal with us.</p>
+      <p class="service-desc" data-lang="is">Heildar baðherbergisendurbætur frá grunni — grind, pípulagningaUndbúningur, armúrar og frágangur. Við stjórnum öllum greinum þar á meðal flísalagningu svo þú átt bara við okkur.</p>
+      <p class="service-desc" data-lang="da">Fuld badeværelsesrenovering fra bunden — indramning, VVS-forberedelse, armaturer og afslutning. Vi styrer alle fag inkl. flisearbejde, så du kun har med os at gøre.</p>
+      <p class="service-desc" data-lang="lt">Visiškas vonios kambario renovavimas nuo nulio — karkasas, santechnikos paruošimas, armatūra ir apdaila. Valdome visus darbus, įskaitant plytelių klojimą, kad susisiektumėte tik su mumis.</p>
+      <span class="service-arrow">↗</span></div>
+    <div class="service-item"><div class="service-num">06</div>
+      <h3 class="service-name" data-lang="en">Roofing</h3>
+      <h3 class="service-name" data-lang="is">Þakviðgerðir</h3>
+      <h3 class="service-name" data-lang="da">Tag</h3>
+      <h3 class="service-name" data-lang="lt">Stogas</h3>
+      <p class="service-desc" data-lang="en">Roof repairs and full replacements — we assess, advise and get it done properly.</p>
+      <p class="service-desc" data-lang="is">Þakviðgerðir og heildar skipti — við metum, ráðleggjum og klárum það rétt.</p>
+      <p class="service-desc" data-lang="da">Tagreparationer og fulde udskiftninger — vi vurderer, rådgiver og får det gjort ordentligt.</p>
+      <p class="service-desc" data-lang="lt">Stogo remontas ir visiškas keitimas — įvertiname, patariame ir atliekame tinkamai.</p>
+      <span class="service-arrow">↗</span></div>
+    <div class="service-item"><div class="service-num">07</div>
+      <h3 class="service-name" data-lang="en">Full Project Management</h3>
+      <h3 class="service-name" data-lang="is">Heildar Verkefnastjórnun</h3>
+      <h3 class="service-name" data-lang="da">Fuld Projektstyring</h3>
+      <h3 class="service-name" data-lang="lt">Visiškas Projektų Valdymas</h3>
+      <p class="service-desc" data-lang="en">We take on the whole project — coordinating all subcontractors including plumbers, electricians and tilers. One point of contact, no stress.</p>
+      <p class="service-desc" data-lang="is">Við tökum að okkur allt verkefnið — samhæfum alla undirverktaka þar á meðal pípulagningamenn, rafvirkja og flísalagningamenn. Einn tengiliður, engin streita.</p>
+      <p class="service-desc" data-lang="da">Vi påtager os hele projektet — koordinerer alle underentreprenører inkl. VVS-installatører, elektrikere og fliseloggere. Ét kontaktpunkt, ingen stress.</p>
+      <p class="service-desc" data-lang="lt">Imamės viso projekto — koordinuojame visus subrangovus, įskaitant santechnikus, elektrikui ir plytelių klojėjus. Vienas kontaktinis asmuo, jokio streso.</p>
+      <span class="service-arrow">↗</span></div>
+  </div>
 </section>
 
 <section class="quote-section">
@@ -419,33 +651,57 @@
     <p class="quote-attr">— Adam Perkowski, Manager — Dirty Burger &amp; Ribs, Fellsmúli</p>
   </div>
   <div class="quote-right">
-    <p class="section-tag" style="margin-bottom:1rem">Our Promise</p>
-    <p>We are not selling you a dream. We are offering craftsmanship we are proud of — on time, on budget, with good communication all the way.</p>
-    <p>When we say "we finish" — we mean it.</p>
-    <a href="#contact" class="btn-primary" style="margin-top:2rem;display:inline-block">Get in touch</a>
+    <p class="section-tag" style="margin-bottom:1rem" data-lang="en">Our Promise</p>
+    <p class="section-tag" style="margin-bottom:1rem" data-lang="is">Loforð okkar</p>
+    <p class="section-tag" style="margin-bottom:1rem" data-lang="da">Vores løfte</p>
+    <p class="section-tag" style="margin-bottom:1rem" data-lang="lt">Mūsų pažadas</p>
+    <p data-lang="en">We are not selling you a dream. We are offering craftsmanship we are proud of — on time, on budget, with good communication all the way.</p>
+    <p data-lang="is">Við erum ekki að selja þér draum. Við bjóðum upp á handverk sem við erum stolt af — á réttum tíma, á fjárhagsáætlun, með góðum samskiptum alla leið.</p>
+    <p data-lang="da">Vi sælger dig ikke en drøm. Vi tilbyder håndværk, vi er stolte af — til tiden, inden for budgettet, med god kommunikation hele vejen.</p>
+    <p data-lang="lt">Mes neparduodame jums svajonės. Mes siūlome amatą, kuriuo didžiuojamės — laiku, pagal biudžetą, su geru bendravimu visą kelią.</p>
+    <p data-lang="en">When we say "we finish" — we mean it.</p>
+    <p data-lang="is">Þegar við segjum „við klárumst" — meinum við það.</p>
+    <p data-lang="da">Når vi siger "vi afslutter" — mener vi det.</p>
+    <p data-lang="lt">Kai sakome "mes baigiame" — mes tai turime omenyje.</p>
+    <a href="#contact" class="btn-primary" style="margin-top:2rem;display:inline-block" data-lang="en">Get in touch</a>
+    <a href="#contact" class="btn-primary" style="margin-top:2rem;display:inline-block" data-lang="is">Hafðu samband</a>
+    <a href="#contact" class="btn-primary" style="margin-top:2rem;display:inline-block" data-lang="da">Kontakt os</a>
+    <a href="#contact" class="btn-primary" style="margin-top:2rem;display:inline-block" data-lang="lt">Susisiekite</a>
   </div>
 </section>
 
 <section id="contact">
   <div class="contact-inner">
     <div class="contact-info">
-      <p class="section-tag">Get in Touch</p>
-      <h2>We're listening.</h2>
-      <p>Send us a message and we will get back to you as soon as possible.</p>
+      <p class="section-tag" data-lang="en">Get in Touch</p>
+      <p class="section-tag" data-lang="is">Hafðu samband</p>
+      <p class="section-tag" data-lang="da">Kontakt</p>
+      <p class="section-tag" data-lang="lt">Susisiekite</p>
+      <h2 data-lang="en">We're listening.</h2>
+      <h2 data-lang="is">Við erum að hlusta.</h2>
+      <h2 data-lang="da">Vi lytter.</h2>
+      <h2 data-lang="lt">Mes klausome.</h2>
+      <p data-lang="en">Send us a message and we will get back to you as soon as possible.</p>
+      <p data-lang="is">Sendu okkur skilaboð og við munum svara þér eins fljótt og auðið er.</p>
+      <p data-lang="da">Send os en besked, og vi vender tilbage til dig hurtigst muligt.</p>
+      <p data-lang="lt">Parašykite mums ir mes susisieksime su jumis kuo greičiau.</p>
       <div class="contact-details">
-        <div class="contact-detail"><div class="contact-detail-icon">📍</div><div class="contact-detail-text"><strong>Location</strong>Reykjavík, Iceland</div></div>
-        <div class="contact-detail"><div class="contact-detail-icon">📞</div><div class="contact-detail-text"><strong>Phone</strong>[Add phone number]</div></div>
-        <div class="contact-detail"><div class="contact-detail-icon">✉️</div><div class="contact-detail-text"><strong>Email</strong>[Add email address]</div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">📍</div><div class="contact-detail-text"><strong data-lang="en">Location</strong><strong data-lang="is">Staðsetning</strong><strong data-lang="da">Placering</strong><strong data-lang="lt">Vieta</strong>Reykjavík, Iceland</div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">📞</div><div class="contact-detail-text"><strong data-lang="en">Phone</strong><strong data-lang="is">Sími</strong><strong data-lang="da">Telefon</strong><strong data-lang="lt">Telefonas</strong>[Add phone number]</div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">✉️</div><div class="contact-detail-text"><strong data-lang="en">Email</strong><strong data-lang="is">Tölvupóstur</strong><strong data-lang="da">E-mail</strong><strong data-lang="lt">El. paštas</strong>[Add email address]</div></div>
       </div>
     </div>
     <form class="contact-form" onsubmit="return false;">
       <div class="form-row">
-        <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"/></div>
-        <div class="form-group"><label>Phone</label><input type="tel" placeholder="Phone number"/></div>
+        <div class="form-group"><label data-lang="en">Name</label><label data-lang="is">Nafn</label><label data-lang="da">Navn</label><label data-lang="lt">Vardas</label><input type="text" placeholder=""/></div>
+        <div class="form-group"><label data-lang="en">Phone</label><label data-lang="is">Sími</label><label data-lang="da">Telefon</label><label data-lang="lt">Telefonas</label><input type="tel" placeholder=""/></div>
       </div>
       <div class="form-group"><label>Email</label><input type="email" placeholder="email@example.com"/></div>
-      <div class="form-group"><label>Message</label><textarea placeholder="Describe your project..."></textarea></div>
-      <button type="submit" class="btn-submit">Send message →</button>
+      <div class="form-group"><label data-lang="en">Message</label><label data-lang="is">Skilaboð</label><label data-lang="da">Besked</label><label data-lang="lt">Žinutė</label><textarea placeholder=""></textarea></div>
+      <button type="submit" class="btn-submit" data-lang="en">Send message →</button>
+      <button type="submit" class="btn-submit" data-lang="is">Senda skilaboð →</button>
+      <button type="submit" class="btn-submit" data-lang="da">Send besked →</button>
+      <button type="submit" class="btn-submit" data-lang="lt">Siųsti žinutę →</button>
     </form>
   </div>
 </section>
@@ -630,6 +886,18 @@
 </div>
 
 <script>
+  // LANGUAGE SWITCHER
+  function setLang(lang) {
+    document.documentElement.setAttribute('data-active-lang', lang);
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    });
+    localStorage.setItem('iv-lang', lang);
+  }
+  // Init language
+  const savedLang = localStorage.getItem('iv-lang') || 'en';
+  setLang(savedLang);
+
   function openProject(id) {
     document.getElementById('overlay-' + id).classList.add('open');
     document.body.style.overflow = 'hidden';
