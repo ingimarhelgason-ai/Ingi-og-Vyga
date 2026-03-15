@@ -193,6 +193,9 @@
     .proj-card:hover .proj-title { color: var(--rust); }
     .proj-card .proj-info::after { content: 'View Project →'; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-top: 1.8rem; display: block; opacity: 0; transform: translateX(-6px); transition: opacity 0.2s, transform 0.2s; }
     .proj-card:hover .proj-info::after { opacity: 1; transform: translateX(0); }
+    @media (max-width: 768px) {
+      .proj-card .proj-info::after { opacity: 1; transform: translateX(0); }
+    }
 
     .proj-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(10,9,8,0.96); overflow-y: auto; }
     .proj-overlay.open { display: block; animation: overlayIn 0.35s ease both; }
@@ -244,10 +247,10 @@
     }
 
     /* LANGUAGE SWITCHER */
-    .lang-switcher { display: flex; gap: 0.4rem; align-items: center; margin-left: 1.5rem; }
-    .lang-btn { background: none; border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: var(--grey); font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.1em; padding: 0.25rem 0.55rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
-    .lang-btn:hover { color: var(--offwhite); border-color: rgba(255,255,255,0.35); }
-    .lang-btn.active { background: var(--rust); border-color: var(--rust); color: var(--offwhite); }
+    .lang-switcher { display: flex; gap: 0.3rem; align-items: center; margin-left: 1rem; }
+    .lang-btn { background: none; border: none; font-size: 1.4rem; cursor: pointer; padding: 0.15rem; opacity: 0.45; transition: opacity 0.2s, transform 0.15s; line-height: 1; border-radius: 2px; }
+    .lang-btn:hover { opacity: 0.8; transform: scale(1.15); }
+    .lang-btn.active { opacity: 1; transform: scale(1.15); }
 
     /* Hide all lang elements by default, show only active */
     [data-lang] { display: none; }
@@ -270,10 +273,10 @@
     <li><a href="#contact" class="nav-cta" data-lang="en">Get in Touch</a><a href="#contact" class="nav-cta" data-lang="is">Hafðu samband</a><a href="#contact" class="nav-cta" data-lang="da">Kontakt</a><a href="#contact" class="nav-cta" data-lang="lt">Susisiekite</a></li>
   </ul>
   <div class="lang-switcher">
-    <button class="lang-btn active" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" onclick="setLang('is')">IS</button>
-    <button class="lang-btn" onclick="setLang('da')">DA</button>
-    <button class="lang-btn" onclick="setLang('lt')">LT</button>
+    <button class="lang-btn active" onclick="setLang('en')">🇬🇧</button>
+    <button class="lang-btn" onclick="setLang('is')">🇮🇸</button>
+    <button class="lang-btn" onclick="setLang('da')">🇩🇰</button>
+    <button class="lang-btn" onclick="setLang('lt')">🇱🇹</button>
   </div>
   <div class="nav-hamburger" onclick="document.getElementById('mobileNav').classList.add('open')">
     <span></span><span></span><span></span>
@@ -299,10 +302,10 @@
   <a href="#contact" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="da">Kontakt</a>
   <a href="#contact" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="lt">Susisiekite</a>
   <div class="lang-switcher" style="margin-top:2rem;">
-    <button class="lang-btn active" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" onclick="setLang('is')">IS</button>
-    <button class="lang-btn" onclick="setLang('da')">DA</button>
-    <button class="lang-btn" onclick="setLang('lt')">LT</button>
+    <button class="lang-btn active" onclick="setLang('en')">🇬🇧</button>
+    <button class="lang-btn" onclick="setLang('is')">🇮🇸</button>
+    <button class="lang-btn" onclick="setLang('da')">🇩🇰</button>
+    <button class="lang-btn" onclick="setLang('lt')">🇱🇹</button>
   </div>
 </div>
 
@@ -716,40 +719,64 @@
 <div class="proj-overlay" id="overlay-dirty-burger">
   <button class="proj-overlay-close" onclick="closeProject()">✕</button>
   <div class="proj-overlay-inner">
-    <p class="proj-overlay-tag">Restaurant · Full Renovation · 2023</p>
+    <p class="proj-overlay-tag" data-lang="en">Restaurant · Full Renovation · 2023</p>
+    <p class="proj-overlay-tag" data-lang="is">Veitingastaður · Heildar Endurbætur · 2023</p>
+    <p class="proj-overlay-tag" data-lang="da">Restaurant · Fuld Renovering · 2023</p>
+    <p class="proj-overlay-tag" data-lang="lt">Restoranas · Visiškas Renovavimas · 2023</p>
     <h2 class="proj-overlay-title">Dirty Burger<br>& Ribs —<br>Fellsmúli</h2>
     <img class="proj-overlay-hero" src="images/image_09.jpg" alt="Dirty Burger & Ribs — finished exterior"/>
 
     <div class="proj-overlay-body">
       <div class="proj-overlay-story">
-        <h3>The Project</h3>
-        <p>This was previously an Aktu-Taktu restaurant, so the kitchen layout was already in place. The brief was clear — give it a completely new identity inside and out.</p>
-        <p>Outside, we stripped the old cladding and installed our own — acid-washed metal sheets treated to look like they had been burned. The result is a bold, dark exterior that immediately tells you this is no ordinary burger joint. We were very happy with how it came out, and felt we really delivered the unique look the Dirty Burger team was after.</p>
-        <p>Inside, we stripped everything back to bare walls. We laid new vinyl flooring throughout the dining area — chosen for its durability and water resistance. We built two completely new bathrooms, one for customers and one for staff, with full tiling in both and around the service counter area.</p>
-        <p>The signature piece is the service counter — clad in the same burned steel plates we used outside, tying the whole identity together. Parts of the dining room walls were finished the same way. We worked closely with an interior designer who created the vision, and we brought in a plumber and electrician to handle those trades. Everything else was us.</p>
+        <h3 data-lang="en">The Project</h3><h3 data-lang="is">Verkefnið</h3><h3 data-lang="da">Projektet</h3><h3 data-lang="lt">Projektas</h3>
+        <p data-lang="en">This was previously an Aktu-Taktu restaurant, so the kitchen layout was already in place. The brief was clear — give it a completely new identity inside and out.</p>
+        <p data-lang="is">Þetta var áður Aktu-Taktu veitingastaður, þannig að eldhúsuppsetningin var þegar til staðar. Verkbeiðnin var skýr — gefa því algjörlega nýja sjálfsmynd að innan og utan.</p>
+        <p data-lang="da">Dette var tidligere en Aktu-Taktu restaurant, så køkkenindretningen var allerede på plads. Opgaven var klar — giv den en helt ny identitet indvendigt og udvendigt.</p>
+        <p data-lang="lt">Anksčiau čia buvo Aktu-Taktu restoranas, todėl virtuvės išdėstymas jau buvo vietoje. Užduotis buvo aiški — suteikti jam visiškai naują tapatybę viduje ir išorėje.</p>
+
+        <p data-lang="en">Outside, we stripped the old cladding and installed our own — acid-washed metal sheets treated to look like they had been burned. The result is a bold, dark exterior that immediately tells you this is no ordinary burger joint. We were very happy with how it came out, and felt we really delivered the unique look the Dirty Burger team was after.</p>
+        <p data-lang="is">Að utan, fjarlægðum við gamla klæðninguna og setjum upp okkar eigin — sýrþvegnar málmplötur meðhöndlaðar til að líta út eins og þær hafi verið brenndar. Niðurstaðan er djörf, dökk útlitskennd sem strax segir þér að þetta sé ekkert venjulegt hamborgastaður. Við vorum mjög ánægð með hvernig það kom út og töldum við hafa veitt þá einstöku útlit sem Dirty Burger teymið var að leita að.</p>
+        <p data-lang="da">Udvendigt afstribede vi den gamle beklædning og installerede vores egen — syrevaskede metalplade behandlet til at se ud som om de var blevet brændt. Resultatet er en dristig, mørk facade, der straks fortæller dig, at dette ikke er et almindeligt burgersted. Vi var meget tilfredse med resultatet og følte, at vi virkelig leverede det unikke look, Dirty Burger-teamet var efter.</p>
+        <p data-lang="lt">Išorėje nuėmėme seną apkalą ir sumontuojame savą — rūgšties plauti metalo lakštai, apdoroti taip, kad atrodytų kaip sudeginti. Rezultatas yra drąsi, tamsi išorė, kuri iš karto pasako, kad tai nėra paprastas burgerių restoranas. Mes buvome labai patenkinti rezultatu ir jautėme, kad tikrai pristatėme unikalų vaizdą, kurio ieškojo Dirty Burger komanda.</p>
+
+        <p data-lang="en">Inside, we stripped everything back to bare walls. We laid new vinyl flooring throughout the dining area — chosen for its durability and water resistance. We built two completely new bathrooms, one for customers and one for staff, with full tiling in both and around the service counter area.</p>
+        <p data-lang="is">Að innan, við fjarlægðum allt niður að berum veggjum. Við lögðum nýtt vínýl gólf um allt borðstofu svæðið — valið fyrir endingargæði þess og vatnsfræðni. Við byggðum tvær algjörlega nýjar klósettaðstæður, eina fyrir viðskiptavini og eina fyrir starfsmenn, með fullar flísalagningu í báðum og í kringum þjónustuborðssvæðið.</p>
+        <p data-lang="da">Indvendigt afstribede vi alt tilbage til bare vægge. Vi lagde nyt vinyldulv i hele spiseområdet — valgt for dets holdbarhed og vandmodstand. Vi byggede to helt nye badeværelser, et til kunder og et til personale, med fuld flisebelægning i begge og rundt om servicedisken.</p>
+        <p data-lang="lt">Viduje nuėmėme viską iki pliko sienų. Viso valgomojo ploto naujas vinilo grindų dangalas — pasirinktas dėl patvarumo ir atsparumo vandeniui. Pastatėme du visiškai naujus tualetus, vieną klientams ir vieną personalui, su pilnu plytelių klojimu abiejuose ir aplink aptarnavimo stalą.</p>
+
+        <p data-lang="en">The signature piece is the service counter — clad in the same burned steel plates we used outside, tying the whole identity together. Parts of the dining room walls were finished the same way. We worked closely with an interior designer who created the vision, and we brought in a plumber and electrician to handle those trades. Everything else was us.</p>
+        <p data-lang="is">Merkilegasta hlutinn er þjónustuborðið — klætt með sömu brenndu stálplötum og við notuðum að utan, sem tengir alla sjálfsmyndina saman. Hlutar af veggjum borðstofunnar voru kláraðir á sama hátt. Við unnum náið með innanhúshönnuði sem skapaði sýnina, og við færðum inn pípulagningamann og rafvirkja til að sjá um þær greinar. Allt annað vorum við.</p>
+        <p data-lang="da">Signaturstykket er servicedisken — beklædt med de samme brændte stålplader, vi brugte udvendigt, der binder hele identiteten sammen. Dele af spisestuevæggene blev afsluttet på samme måde. Vi arbejdede tæt sammen med en indretningsarkitekt, der skabte visionen, og vi hentede en VVS-installatør og elektriker til at håndtere disse fag. Alt andet var os.</p>
+        <p data-lang="lt">Pagrindinis akcentas yra aptarnavimo stalas — apklotas tais pačiais sudegintais plieniniais lakštais, kuriuos naudojome išorėje, surišant visą tapatybę. Dalys valgomojo sienų buvo baigtos tokiu pat būdu. Mes glaudžiai bendradarbiavome su interjero dizaineriu, kuris sukūrė viziją, ir pritraukėme santechniką ir elektriką tvarkyti tų darbų. Visa kita buvome mes.</p>
       </div>
       <div class="proj-overlay-meta">
         <div class="proj-meta-item">
-          <strong>Location</strong>
+          <strong data-lang="en">Location</strong><strong data-lang="is">Staðsetning</strong><strong data-lang="da">Placering</strong><strong data-lang="lt">Vieta</strong>
           <span>Fellsmúli, Reykjavík</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Year</strong>
+          <strong data-lang="en">Year</strong><strong data-lang="is">Ár</strong><strong data-lang="da">År</strong><strong data-lang="lt">Metai</strong>
           <span>2023</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Scope of Work</strong>
-          <span>Full exterior cladding · New windows & doors · Vinyl flooring · 2 new bathrooms · Tiling · Custom steel-clad service counter · Ceiling & lighting · Interior fit-out</span>
+          <strong data-lang="en">Scope of Work</strong><strong data-lang="is">Umfang verks</strong><strong data-lang="da">Arbejdsomfang</strong><strong data-lang="lt">Darbų apimtis</strong>
+          <span data-lang="en">Full exterior cladding · New windows & doors · Vinyl flooring · 2 new bathrooms · Tiling · Custom steel-clad service counter · Ceiling & lighting · Interior fit-out</span>
+          <span data-lang="is">Heildar útveggjaklæðning · Nýir gluggar & hurðir · Vínýl gólf · 2 nýjar klósettaðstæður · Flísalagning · Sérsmiðaður stálklæddur þjónustuborð · Loft & lýsing · Innréttingar</span>
+          <span data-lang="da">Fuld udvendig beklædning · Nye vinduer & døre · Vinyldulv · 2 nye badeværelser · Flisearbejde · Specialbygget stålbeklædt servicedisk · Loft & belysning · Indvendig indretning</span>
+          <span data-lang="lt">Visiškas išorinis apkala · Nauji langai & durys · Vinilo grindys · 2 nauji tualetai · Plytelių klojimas · Individualus plienu apklotas aptarnavimo stalas · Lubos & apšvietimas · Interjero įrengimas</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Collaborators</strong>
-          <span>Interior Designer · Plumber · Electrician</span>
+          <strong data-lang="en">Collaborators</strong><strong data-lang="is">Samstarfsaðilar</strong><strong data-lang="da">Samarbejdspartnere</strong><strong data-lang="lt">Bendradarbiai</strong>
+          <span data-lang="en">Interior Designer · Plumber · Electrician</span>
+          <span data-lang="is">Innanhúshönnuður · Pípulagningamaður · Rafvirki</span>
+          <span data-lang="da">Indretningsarkitekt · VVS-installatør · Elektriker</span>
+          <span data-lang="lt">Interjero dizaineris · Santechnikas · Elektrikas</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Tags</strong>
+          <strong data-lang="en">Tags</strong><strong data-lang="is">Flokkar</strong><strong data-lang="da">Tags</strong><strong data-lang="lt">Žymos</strong>
           <div class="proj-overlay-tags-list">
-            <span class="proj-tag">Restaurant</span>
-            <span class="proj-tag">Full Renovation</span>
+            <span class="proj-tag" data-lang="en">Restaurant</span><span class="proj-tag" data-lang="is">Veitingastaður</span><span class="proj-tag" data-lang="da">Restaurant</span><span class="proj-tag" data-lang="lt">Restoranas</span>
+            <span class="proj-tag" data-lang="en">Full Renovation</span><span class="proj-tag" data-lang="is">Heildar Endurbætur</span><span class="proj-tag" data-lang="da">Fuld Renovering</span><span class="proj-tag" data-lang="lt">Visiškas Renovavimas</span>
             <span class="proj-tag">Exterior Cladding</span>
             <span class="proj-tag">Subcontractor Management</span>
             <span class="proj-tag">Custom Metalwork</span>
@@ -784,38 +811,62 @@
 <div class="proj-overlay" id="overlay-kopavogur-cladding">
   <button class="proj-overlay-close" onclick="closeProject()">✕</button>
   <div class="proj-overlay-inner">
-    <p class="proj-overlay-tag">Residential · Exterior Cladding · 2018</p>
-    <h2 class="proj-overlay-title">Cladding —<br>Kópavogur</h2>
+    <p class="proj-overlay-tag" data-lang="en">Residential · Exterior Cladding · 2018</p>
+    <p class="proj-overlay-tag" data-lang="is">Íbúðarhús · Útveggjaklæðning · 2018</p>
+    <p class="proj-overlay-tag" data-lang="da">Bolig · Udvendig Beklædning · 2018</p>
+    <p class="proj-overlay-tag" data-lang="lt">Gyvenamasis · Išorinė Apkala · 2018</p>
+    <h2 class="proj-overlay-title" data-lang="en">Cladding —<br>Kópavogur</h2>
+    <h2 class="proj-overlay-title" data-lang="is">Klæðning —<br>Kópavogur</h2>
+    <h2 class="proj-overlay-title" data-lang="da">Beklædning —<br>Kópavogur</h2>
+    <h2 class="proj-overlay-title" data-lang="lt">Apkala —<br>Kópavogur</h2>
     <img class="proj-overlay-hero" src="images/Kopavogur_2.jpg" alt="Dark aluminium cladding — Kópavogur"/>
 
     <div class="proj-overlay-body">
       <div class="proj-overlay-story">
-        <h3>The Project</h3>
-        <p>Full exterior cladding on a residential house in Kópavogur — dark corrugated aluminium installed in winter 2018. The frame goes up first, then insulation is fitted between, and finally the cladding goes on — every panel tight, level and square.</p>
-        <p>Dark smábára is one of the most popular choices in Reykjavík right now, and it's easy to see why. It looks sharp, it's completely weatherproof, and once it's on it needs nothing from you. Ever.</p>
-        <p>It's also one of the most cost-effective cladding options available. The corrugated sheets are only 0.8mm thick compared to flat metal panels which are typically 2mm — that's a significant material saving without any compromise on durability or appearance. You get a premium result at a fraction of the price of other metal solutions.</p>
-        <p>In many ways smábára is the classic Icelandic exterior — as much a part of the Reykjavík streetscape as colourful plaster houses are to Rome. We think it looks great, and this project is a good example of why.</p>
+        <h3 data-lang="en">The Project</h3><h3 data-lang="is">Verkefnið</h3><h3 data-lang="da">Projektet</h3><h3 data-lang="lt">Projektas</h3>
+        <p data-lang="en">Full exterior cladding on a residential house in Kópavogur — dark corrugated aluminium installed in winter 2018. The frame goes up first, then insulation is fitted between, and finally the cladding goes on — every panel tight, level and square.</p>
+        <p data-lang="is">Heildar útveggjaklæðning á íbúðarhúsi í Kópavogi — dökkt bylgjublikkál sett upp í vetur 2018. Grindvirkið fer upp fyrst, þá er einangrun sett á milli, og að lokum fer klæðningin á — hvert spjald þétt, slétt og hornrétt.</p>
+        <p data-lang="da">Fuld udvendig beklædning på et parcelhus i Kópavogur — mørkt bølgeblik aluminium monteret i vinteren 2018. Rammen sættes op først, derefter monteres isolering imellem, og endelig monteres beklædningen — hvert panel stramt, vandret og i vatter.</p>
+        <p data-lang="lt">Visiškas išorinis apkala gyvenamajame name Kópavogure — tamsi banguota aliuminio apkala, sumontuota 2018 m. žiemą. Pirmiausia pastatomas karkasas, tada tarp jo įdedama izoliacija, ir galiausiai sumontuojama apkala — kiekviena plokštė tvirtai, lygiai ir kampuotai.</p>
+
+        <p data-lang="en">Dark smábára is one of the most popular choices in Reykjavík right now, and it's easy to see why. It looks sharp, it's completely weatherproof, and once it's on it needs nothing from you. Ever.</p>
+        <p data-lang="is">Dökk smábára er eitt af vinsælustu valkostunum í Reykjavík núna, og það er auðvelt að sjá af hverju. Það lítur snögg út, er fullkomlega veðurþétt, og þegar það er komið á þarf það ekkert frá þér. Nokkurn tíma.</p>
+        <p data-lang="da">Mørk smábára er et af de mest populære valg i Reykjavík i øjeblikket, og det er let at forstå hvorfor. Det ser skarpt ud, er helt vejrbestandigt, og når det er monteret kræver det intet fra dig. Nogensinde.</p>
+        <p data-lang="lt">Tamsi smábára šiuo metu yra vienas populiariausių pasirinkimų Reikjavike, ir lengva suprasti kodėl. Atrodo elegantiškai, yra visiškai atspari orams, ir kai ji sumontuota — nieko daugiau nereikia. Niekada.</p>
+
+        <p data-lang="en">It's also one of the most cost-effective cladding options available. The corrugated sheets are only 0.8mm thick compared to flat metal panels which are typically 2mm — that's a significant material saving without any compromise on durability or appearance. You get a premium result at a fraction of the price of other metal solutions.</p>
+        <p data-lang="is">Það er líka einn af hagkvæmustu klæðningarvalkostunum sem til eru. Bylgjuplöturnar eru aðeins 0,8mm þykkar miðað við flettar málmplötur sem eru venjulega 2mm — það er verulegt efnissparnaður án nokkurrar málamiðlunar á endingargæðum eða útliti. Þú færð úrvals niðurstöðu á broti af verði annarra málmlausna.</p>
+        <p data-lang="da">Det er også en af de mest omkostningseffektive beklædningsmuligheder. Bølgepladerne er kun 0,8mm tykke sammenlignet med flade metalpaneler, som typisk er 2mm — det er en betydelig materialebesparelse uden nogen kompromis på holdbarhed eller udseende. Du får et premium resultat til en brøkdel af prisen på andre metalløsninger.</p>
+        <p data-lang="lt">Tai taip pat viena iš ekonomiškiausių apkalos galimybių. Banguotos plokštės yra tik 0,8 mm storio, palyginti su plokščiais metalo plokštėmis, kurios paprastai būna 2 mm — tai reikšmingas medžiagų taupymas be jokio kompromiso dėl patvarumo ar išvaizdos. Gausite aukštos kokybės rezultatą už dalį kitų metalinių sprendimų kainos.</p>
+
+        <p data-lang="en">In many ways smábára is the classic Icelandic exterior — as much a part of the Reykjavík streetscape as colourful plaster houses are to Rome. We think it looks great, and this project is a good example of why.</p>
+        <p data-lang="is">Að mörgu leyti er smábára klassíska íslenski útveggurinn — eins mikill hluti af götumyndinni í Reykjavík og litríkar múrhúsið er fyrir Róm. Við teljum að það líti frábærlega út, og þetta verkefni er gott dæmi um hvers vegna.</p>
+        <p data-lang="da">På mange måder er smábára den klassiske islandske facade — lige så meget en del af Reykjavíks gadebillede som farverige pudsede huse er for Rom. Vi synes det ser fantastisk ud, og dette projekt er et godt eksempel på hvorfor.</p>
+        <p data-lang="lt">Daugeliu atžvilgių smábára yra klasikinis islandiškas fasadas — tiek pat Reikjaviko gatvių peizažo dalis, kiek spalvingi tinko namai yra Romos. Manome, kad tai atrodo puikiai, ir šis projektas yra geras pavyzdys kodėl.</p>
       </div>
       <div class="proj-overlay-meta">
         <div class="proj-meta-item">
-          <strong>Location</strong>
+          <strong data-lang="en">Location</strong><strong data-lang="is">Staðsetning</strong><strong data-lang="da">Placering</strong><strong data-lang="lt">Vieta</strong>
           <span>Kópavogur, Iceland</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Year</strong>
+          <strong data-lang="en">Year</strong><strong data-lang="is">Ár</strong><strong data-lang="da">År</strong><strong data-lang="lt">Metai</strong>
           <span>2018</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Scope of Work</strong>
-          <span>Full exterior aluminium cladding · Insulation · Framing</span>
+          <strong data-lang="en">Scope of Work</strong><strong data-lang="is">Umfang verks</strong><strong data-lang="da">Arbejdsomfang</strong><strong data-lang="lt">Darbų apimtis</strong>
+          <span data-lang="en">Full exterior aluminium cladding · Insulation · Framing</span>
+          <span data-lang="is">Heildar útveggjaálklæðning · Einangrun · Grindverk</span>
+          <span data-lang="da">Fuld udvendig aluminiumsbeklædning · Isolering · Indramning</span>
+          <span data-lang="lt">Visiškas išorinis aliuminio apkala · Izoliacija · Karkasas</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Tags</strong>
+          <strong data-lang="en">Tags</strong><strong data-lang="is">Flokkar</strong><strong data-lang="da">Tags</strong><strong data-lang="lt">Žymos</strong>
           <div class="proj-overlay-tags-list">
             <span class="proj-tag">Aluminium Cladding</span>
             <span class="proj-tag">Smábára</span>
-            <span class="proj-tag">Residential</span>
-            <span class="proj-tag">Winter Work</span>
+            <span class="proj-tag" data-lang="en">Residential</span><span class="proj-tag" data-lang="is">Íbúðarhús</span><span class="proj-tag" data-lang="da">Bolig</span><span class="proj-tag" data-lang="lt">Gyvenamasis</span>
+            <span class="proj-tag" data-lang="en">Winter Work</span><span class="proj-tag" data-lang="is">Vetrarvinna</span><span class="proj-tag" data-lang="da">Vinterarbejde</span><span class="proj-tag" data-lang="lt">Žiemos darbai</span>
           </div>
         </div>
       </div>
@@ -832,38 +883,57 @@
 <div class="proj-overlay" id="overlay-cladding-railing">
   <button class="proj-overlay-close" onclick="closeProject()">✕</button>
   <div class="proj-overlay-inner">
-    <p class="proj-overlay-tag">Residential · Exterior Renovation · 2023</p>
-    <h2 class="proj-overlay-title">Cladding,<br>New Windows<br>& Glass Railing —</h2>
+    <p class="proj-overlay-tag" data-lang="en">Residential · Exterior Renovation · 2023</p>
+    <p class="proj-overlay-tag" data-lang="is">Íbúðarhús · Útveggjaendurbætur · 2023</p>
+    <p class="proj-overlay-tag" data-lang="da">Bolig · Udvendig Renovering · 2023</p>
+    <p class="proj-overlay-tag" data-lang="lt">Gyvenamasis · Išorės Renovavimas · 2023</p>
+    <h2 class="proj-overlay-title" data-lang="en">Cladding,<br>New Windows<br>& Glass Railing —</h2>
+    <h2 class="proj-overlay-title" data-lang="is">Klæðning,<br>Nýjar Gluggur<br>& Glerhandriðið —</h2>
+    <h2 class="proj-overlay-title" data-lang="da">Beklædning,<br>Nye Vinduer<br>& Glashegn —</h2>
+    <h2 class="proj-overlay-title" data-lang="lt">Apkala,<br>Nauji Langai<br>& Stiklo Turėklai —</h2>
     <img class="proj-overlay-hero" src="images/Project_2_photo_3.jpg" alt="Finished exterior — aluminium cladding and glass railing"/>
 
     <div class="proj-overlay-body">
       <div class="proj-overlay-story">
-        <h3>The Project</h3>
-        <p>The brief on this project was to take a two-storey residential house and make it completely weatherproof — with zero maintenance required for decades to come. We covered the entire exterior in aluminium corrugated cladding, known in Icelandic as smábára, and laid new electrical wiring for outdoor lighting throughout.</p>
-        <p>Aluminium cladding is one of the most practical investments you can make on a house in Iceland. Once it's on, it's on — no painting, no patching, no upkeep. It handles the wind, the rain and the freeze-thaw cycles without complaint, and it looks sharp doing it.</p>
-        <p>After the cladding was complete, we installed the glass railing on the balcony. During that process, the decision was made to extend it to the exterior stairs as well — and it was the right call. The space had felt tight and enclosed before, and glass changes that completely. Light comes through, sight lines open up, and the whole exterior feels bigger and more considered. It's one of those details that makes a real difference.</p>
+        <h3 data-lang="en">The Project</h3><h3 data-lang="is">Verkefnið</h3><h3 data-lang="da">Projektet</h3><h3 data-lang="lt">Projektas</h3>
+        <p data-lang="en">The brief on this project was to take a two-storey residential house and make it completely weatherproof — with zero maintenance required for decades to come. We covered the entire exterior in aluminium corrugated cladding, known in Icelandic as smábára, and laid new electrical wiring for outdoor lighting throughout.</p>
+        <p data-lang="is">Verkbeiðnin á þessu verkefni var að taka tveggja hæða íbúðarhús og gera það algjörlega veðurþétt — með engri viðhaldskröfu í áratugi. Við klæddum alla útvegginn í bylgjublikkál, þekkt á íslensku sem smábára, og lögðum nýjar rafmagnslagnir fyrir útilýsingu um allt.</p>
+        <p data-lang="da">Opgaven på dette projekt var at tage et toetageshus og gøre det helt vejrbestandigt — uden vedligeholdelse i årtier frem. Vi dækkede hele facaden med bølgeblik aluminium, kendt på islandsk som smábára, og lagde ny elinstallation til udendørsbelysning overalt.</p>
+        <p data-lang="lt">Šio projekto užduotis buvo paimti dviejų aukštų gyvenamąjį namą ir padaryti jį visiškai atsparu orams — be jokio techninės priežiūros poreikio dešimtmečiais. Visą išorę padengėme banguotu aliuminio apkala, islandiškai žinoma kaip smábára, ir visur išklojome naujus elektros laidus lauko apšvietimui.</p>
+
+        <p data-lang="en">Aluminium cladding is one of the most practical investments you can make on a house in Iceland. Once it's on, it's on — no painting, no patching, no upkeep. It handles the wind, the rain and the freeze-thaw cycles without complaint, and it looks sharp doing it.</p>
+        <p data-lang="is">Álklæðning er ein hagnýtasta fjárfestingin sem þú getur gert á húsi á Íslandi. Þegar það er komið á, er það komið á — engin málning, engar viðgerðir, ekkert viðhald. Það þolir vindinn, rigningu og frostþýðulotur án kvarta, og lítur snögg út á meðan.</p>
+        <p data-lang="da">Aluminiumsbeklædning er en af de mest praktiske investeringer, du kan foretage på et hus på Island. Når den er på, er den på — ingen maling, ingen reparationer, ingen vedligeholdelse. Den klarer vind, regn og frost-tø-cyklusser uden at klage, og ser skarp ud mens den gør det.</p>
+        <p data-lang="lt">Aliuminio apkala yra viena praktiškiausių investicijų, kurias galite padaryti namui Islandijoje. Kai ji sumontuota — ji sumontuota, jokio dažymo, jokių lopymų, jokios priežiūros. Ji atlaikys vėją, lietų ir šaldymo-atšildymo ciklus be jokių skundų, ir atrodo elegantiškai tai darydama.</p>
+
+        <p data-lang="en">After the cladding was complete, we installed the glass railing on the balcony. During that process, the decision was made to extend it to the exterior stairs as well — and it was the right call. The space had felt tight and enclosed before, and glass changes that completely. Light comes through, sight lines open up, and the whole exterior feels bigger and more considered. It's one of those details that makes a real difference.</p>
+        <p data-lang="is">Eftir að klæðningin var lokið, setjum við upp glerhandriðið á svölina. Í þeim ferli var tekin ákvörðun um að lengja það yfir á útitröppurnar líka — og það var rétt ákvörðun. Rýmið hafði fundist þröngt og lokað áður, og glerið breytir því algerlega. Ljós kemur í gegn, sjónlínur opnast, og allt útlítið finnst stærra og hugsaðra. Það er einn af þeim smáatriðum sem skiptir máli.</p>
+        <p data-lang="da">Efter at beklædningen var færdig, installerede vi glasrækværket på balkonen. Under den proces blev beslutningen truffet om at udvide det til de udvendige trapper også — og det var det rigtige valg. Rummet havde føles stramt og lukket før, og glas ændrer det fuldstændigt. Lys kommer igennem, sigtelinjer åbner sig op, og hele facaden føles større og mere gennemtænkt. Det er en af de detaljer, der virkelig gør en forskel.</p>
+        <p data-lang="lt">Užbaigus apkalos darbus, sumontuojame stiklo turėklus balkone. Tame procese buvo priimtas sprendimas pratęsti juos ir ant išorinių laiptų — ir tai buvo teisingas sprendimas. Anksčiau erdvė atrodė ankšta ir uždara, o stiklas tai visiškai pakeičia. Šviesa prasiskverbia, regėjimo linijos atsiveria, o visa išorė atrodo didesnė ir labiau apgalvota. Tai viena iš tų detalių, kurios tikrai daro skirtumą.</p>
       </div>
       <div class="proj-overlay-meta">
         <div class="proj-meta-item">
-          <strong>Location</strong>
+          <strong data-lang="en">Location</strong><strong data-lang="is">Staðsetning</strong><strong data-lang="da">Placering</strong><strong data-lang="lt">Vieta</strong>
           <span>Reykjavík, Iceland</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Year</strong>
+          <strong data-lang="en">Year</strong><strong data-lang="is">Ár</strong><strong data-lang="da">År</strong><strong data-lang="lt">Metai</strong>
           <span>2023</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Scope of Work</strong>
-          <span>Full exterior aluminium cladding · New outdoor electrical wiring · Glass balcony railing · Glass stair railing</span>
+          <strong data-lang="en">Scope of Work</strong><strong data-lang="is">Umfang verks</strong><strong data-lang="da">Arbejdsomfang</strong><strong data-lang="lt">Darbų apimtis</strong>
+          <span data-lang="en">Full exterior aluminium cladding · New outdoor electrical wiring · Glass balcony railing · Glass stair railing</span>
+          <span data-lang="is">Heildar útveggjaálklæðning · Nýjar útiraflagnir · Glerhandriði á svölum · Glerhandriði á tröppum</span>
+          <span data-lang="da">Fuld udvendig aluminiumsbeklædning · Ny udendørs elinstallation · Glasrækværk på balkon · Glasrækværk på trappe</span>
+          <span data-lang="lt">Visiškas išorinis aliuminio apkala · Nauji lauko elektros laidai · Stiklo turėklai balkone · Stiklo turėklai laiptais</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Tags</strong>
+          <strong data-lang="en">Tags</strong><strong data-lang="is">Flokkar</strong><strong data-lang="da">Tags</strong><strong data-lang="lt">Žymos</strong>
           <div class="proj-overlay-tags-list">
             <span class="proj-tag">Aluminium Cladding</span>
             <span class="proj-tag">Smábára</span>
-            <span class="proj-tag">Glass Railing</span>
-            <span class="proj-tag">Outdoor Electrical</span>
-            <span class="proj-tag">Exterior Renovation</span>
+            <span class="proj-tag" data-lang="en">Glass Railing</span><span class="proj-tag" data-lang="is">Glerhandriði</span><span class="proj-tag" data-lang="da">Glasrækværk</span><span class="proj-tag" data-lang="lt">Stiklo turėklai</span>
+            <span class="proj-tag" data-lang="en">Outdoor Electrical</span><span class="proj-tag" data-lang="is">Útiraflagnir</span><span class="proj-tag" data-lang="da">Udendørs El</span><span class="proj-tag" data-lang="lt">Lauko elektra</span>
           </div>
         </div>
       </div>
@@ -890,7 +960,7 @@
   function setLang(lang) {
     document.documentElement.setAttribute('data-active-lang', lang);
     document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+      btn.classList.toggle('active', btn.getAttribute('onclick') === `setLang('${lang}')`);
     });
     localStorage.setItem('iv-lang', lang);
   }
@@ -927,44 +997,69 @@
 <div class="proj-overlay" id="overlay-ulfarsardalur">
   <button class="proj-overlay-close" onclick="closeProject()">✕</button>
   <div class="proj-overlay-inner">
-    <p class="proj-overlay-tag">Residential · Full Interior Renovation · 2022</p>
-    <h2 class="proj-overlay-title">Full Interior<br>Fit-out —<br>Úlfarsárdalur</h2>
+    <p class="proj-overlay-tag" data-lang="en">Residential · Full Interior Renovation · 2022</p>
+    <p class="proj-overlay-tag" data-lang="is">Íbúðarhús · Heildar Innréttingar · 2022</p>
+    <p class="proj-overlay-tag" data-lang="da">Bolig · Fuld Indvendig Renovering · 2022</p>
+    <p class="proj-overlay-tag" data-lang="lt">Gyvenamasis · Visiškas Interjero Renovavimas · 2022</p>
+    <h2 class="proj-overlay-title" data-lang="en">Full Interior<br>Fit-out —<br>Úlfarsárdalur</h2>
+    <h2 class="proj-overlay-title" data-lang="is">Heildar<br>Innréttingar —<br>Úlfarsárdalur</h2>
+    <h2 class="proj-overlay-title" data-lang="da">Fuld Indvendig<br>Indretning —<br>Úlfarsárdalur</h2>
+    <h2 class="proj-overlay-title" data-lang="lt">Visiškas Interjero<br>Įrengimas —<br>Úlfarsárdalur</h2>
     <img class="proj-overlay-hero" src="images/Gerdarbrunnur_Hero_shot_stofan.jpg" alt="Finished living room — Úlfarsárdalur"/>
 
     <div class="proj-overlay-body">
       <div class="proj-overlay-story">
-        <h3>The Project</h3>
-        <p>This house had previously been converted into two separate rental apartments. Our job was to join them back together into a single home and bring the whole property up to the highest possible standard — essentially starting from scratch.</p>
-        <p>The first step was stripping the house back to the bone. We removed the apartment division and dismantled everything that needed replacing — walls, ceilings, floors, plumbing routes, electrical runs. Once we had a clean canvas, the real work began.</p>
-        <p>Almost all the electrical wiring was replaced and reconfigured from scratch. Floor heating was installed throughout, and new stairs were built to connect the floors properly as a single home again. We framed and boarded new walls and ceilings, plastered, filled, and painted every surface.</p>
-        <p>We worked alongside an interior designer throughout to make sure the finishing details matched the vision. The result is a modern, high-quality home that shows no trace of the two-apartment layout it came from.</p>
+        <h3 data-lang="en">The Project</h3><h3 data-lang="is">Verkefnið</h3><h3 data-lang="da">Projektet</h3><h3 data-lang="lt">Projektas</h3>
+        <p data-lang="en">This house had previously been converted into two separate rental apartments. Our job was to join them back together into a single home and bring the whole property up to the highest possible standard — essentially starting from scratch.</p>
+        <p data-lang="is">Þetta hús hafði áður verið breytt í tvær aðskildar leigubústaði. Verkefni okkar var að sameina þær aftur í eitt heimili og koma allri eigninni í hæsta mögulega gæðastaðal — sem er í grundvallaratriðum að byrja upp á nýtt.</p>
+        <p data-lang="da">Dette hus var tidligere blevet omdannet til to separate lejligheder. Vores opgave var at samle dem igen til et enkelt hjem og bringe hele ejendommen op til den højest mulige standard — i det væsentlige startende fra bunden.</p>
+        <p data-lang="lt">Šis namas anksčiau buvo pertvarkytas į du atskirus nuomojamus butus. Mūsų darbas buvo vėl sujungti juos į vieną namus ir pakelti visą turtą iki aukščiausio įmanomo standarto — iš esmės pradedant nuo nulio.</p>
+
+        <p data-lang="en">The first step was stripping the house back to the bone. We removed the apartment division and dismantled everything that needed replacing — walls, ceilings, floors, plumbing routes, electrical runs. Once we had a clean canvas, the real work began.</p>
+        <p data-lang="is">Fyrsta skrefið var að rífa húsið niður að beinum. Við fjarlægðum skiptingu íbúðanna og rifum allt sem þurfti að skipta út — veggi, loft, gólf, pípulagnaleiðir, rafmagnslagnir. Þegar við höfðum hreint stigi, hófst raunverulega vinna.</p>
+        <p data-lang="da">Det første skridt var at strippe huset tilbage til benet. Vi fjernede lejlighedsopdelingen og demonterede alt, der skulle udskiftes — vægge, lofter, gulve, VVS-ruter, elinstallationer. Når vi havde et rent lærred, begyndte det rigtige arbejde.</p>
+        <p data-lang="lt">Pirmas žingsnis buvo nuimti namą iki kaulų. Pašalinome butų pertvarą ir išardėme viską, ką reikėjo pakeisti — sienas, lubas, grindis, santechnikos trases, elektros laidus. Kai turėjome švarų drobę, prasidėjo tikrasis darbas.</p>
+
+        <p data-lang="en">Almost all the electrical wiring was replaced and reconfigured from scratch. Floor heating was installed throughout, and new stairs were built to connect the floors properly as a single home again. We framed and boarded new walls and ceilings, plastered, filled, and painted every surface.</p>
+        <p data-lang="is">Næstum allt rafmagnslagnirnar voru skipt út og endurskipulagðar frá grunni. Gólfhiti var settur upp um allt, og nýjar tröppur voru smíðaðar til að tengja hæðirnar rétt saman sem eitt heimili aftur. Við grindvirktuðum og borðuðum nýja veggi og loft, múruðum, fyllum og máluðum hverja yfirborðið.</p>
+        <p data-lang="da">Næsten al elinstallation blev udskiftet og omkonfigureret fra bunden. Gulvvarme blev installeret overalt, og nye trapper blev bygget til korrekt at forbinde etagerne som et enkelt hjem igen. Vi indrammede og beklædte nye vægge og lofter, pudsede, sparkede og malede hver overflade.</p>
+        <p data-lang="lt">Beveik visi elektros laidai buvo pakeisti ir iš naujo sukonfigūruoti nuo nulio. Visur buvo sumontuotas grindų šildymas, o nauji laiptai buvo pastatyti tinkamai sujungti aukštus kaip vieną namą vėl. Mes suformavome ir apmūrijome naujas sienas ir lubas, tinkavome, pildėme ir dažėme kiekvieną paviršių.</p>
+
+        <p data-lang="en">We worked alongside an interior designer throughout to make sure the finishing details matched the vision. The result is a modern, high-quality home that shows no trace of the two-apartment layout it came from.</p>
+        <p data-lang="is">Við unnum hliðar innanhúshönnuði í gegnum allt til að tryggja að lokasmáatriðin passuðu við sýnina. Niðurstaðan er nútímalegt, hágæða heimili sem sýnir enga slóð af tvíbúðarútliti sem það kom frá.</p>
+        <p data-lang="da">Vi arbejdede side om side med en indretningsarkitekt hele vejen igennem for at sikre, at de afsluttende detaljer matchede visionen. Resultatet er et moderne, høj kvalitets hjem, der ikke viser nogen spor af den tolejlighedsindretning, det kom fra.</p>
+        <p data-lang="lt">Visą laiką dirbome kartu su interjero dizaineriu, kad užtikrintume, jog baigimo detalės atitiktų viziją. Rezultatas yra modernus, aukštos kokybės namas, kuriame nematyti jokių dviejų butų išplanavimo pėdsakų.</p>
       </div>
       <div class="proj-overlay-meta">
         <div class="proj-meta-item">
-          <strong>Location</strong>
+          <strong data-lang="en">Location</strong><strong data-lang="is">Staðsetning</strong><strong data-lang="da">Placering</strong><strong data-lang="lt">Vieta</strong>
           <span>Úlfarsárdalur, Reykjavík</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Year</strong>
+          <strong data-lang="en">Year</strong><strong data-lang="is">Ár</strong><strong data-lang="da">År</strong><strong data-lang="lt">Metai</strong>
           <span>2022</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Scope of Work</strong>
-          <span>Full strip-out · New electrical throughout · Underfloor heating · New stairs · Framing & boarding · Plastering & filling · Painting · New doors & fit-out</span>
+          <strong data-lang="en">Scope of Work</strong><strong data-lang="is">Umfang verks</strong><strong data-lang="da">Arbejdsomfang</strong><strong data-lang="lt">Darbų apimtis</strong>
+          <span data-lang="en">Full strip-out · New electrical throughout · Underfloor heating · New stairs · Framing & boarding · Plastering & filling · Painting · New doors & fit-out</span>
+          <span data-lang="is">Heildar rif · Nýjar rafmagnslagnir um allt · Gólfhiti · Nýjar tröppur · Grindverk & borðun · Múrning & fylling · Málning · Nýjar hurðir & innréttingar</span>
+          <span data-lang="da">Fuld afrivning · Ny elinstallation overalt · Gulvvarme · Ny trappe · Indramning & beklædning · Pudsning & spartling · Maling · Nye døre & indretning</span>
+          <span data-lang="lt">Visiškas nuėmimas · Nauji elektros laidai visur · Grindų šildymas · Nauji laiptai · Karkasas & apkala · Tinkavimas & pildymas · Dažymas · Naujos durys & įrengimas</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Collaborators</strong>
-          <span>Interior Designer · Electrician · Plumber</span>
+          <strong data-lang="en">Collaborators</strong><strong data-lang="is">Samstarfsaðilar</strong><strong data-lang="da">Samarbejdspartnere</strong><strong data-lang="lt">Bendradarbiai</strong>
+          <span data-lang="en">Interior Designer · Electrician · Plumber</span>
+          <span data-lang="is">Innanhúshönnuður · Rafvirki · Pípulagningamaður</span>
+          <span data-lang="da">Indretningsarkitekt · Elektriker · VVS-installatør</span>
+          <span data-lang="lt">Interjero dizaineris · Elektrikas · Santechnikas</span>
         </div>
         <div class="proj-meta-item">
-          <strong>Tags</strong>
+          <strong data-lang="en">Tags</strong><strong data-lang="is">Flokkar</strong><strong data-lang="da">Tags</strong><strong data-lang="lt">Žymos</strong>
           <div class="proj-overlay-tags-list">
-            <span class="proj-tag">Full Renovation</span>
-            <span class="proj-tag">Plastering &amp; Painting</span>
-            <span class="proj-tag">Floor Heating</span>
-            <span class="proj-tag">Ceiling Boards</span>
-            <span class="proj-tag">Stairs &amp; Doors</span>
-            <span class="proj-tag">Electrical</span>
+            <span class="proj-tag" data-lang="en">Full Renovation</span><span class="proj-tag" data-lang="is">Heildar Endurbætur</span><span class="proj-tag" data-lang="da">Fuld Renovering</span><span class="proj-tag" data-lang="lt">Visiškas Renovavimas</span>
+            <span class="proj-tag" data-lang="en">Plastering &amp; Painting</span><span class="proj-tag" data-lang="is">Múrning &amp; Málning</span><span class="proj-tag" data-lang="da">Pudsning &amp; Maling</span><span class="proj-tag" data-lang="lt">Tinkavimas &amp; Dažymas</span>
+            <span class="proj-tag" data-lang="en">Floor Heating</span><span class="proj-tag" data-lang="is">Gólfhiti</span><span class="proj-tag" data-lang="da">Gulvvarme</span><span class="proj-tag" data-lang="lt">Grindų šildymas</span>
+            <span class="proj-tag" data-lang="en">Stairs &amp; Doors</span><span class="proj-tag" data-lang="is">Tröppur &amp; Hurðir</span><span class="proj-tag" data-lang="da">Trappe &amp; Døre</span><span class="proj-tag" data-lang="lt">Laiptai &amp; Durys</span>
           </div>
         </div>
       </div>
