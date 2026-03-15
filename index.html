@@ -248,9 +248,11 @@
 
     /* LANGUAGE SWITCHER */
     .lang-switcher { display: flex; gap: 0.25rem; align-items: center; margin-left: 1rem; }
-    .lang-btn { background: none; border: 1px solid rgba(255,255,255,0.12); border-radius: 2px; color: var(--grey); font-family: 'DM Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.08em; padding: 0.2rem 0.4rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
-    .lang-btn:hover { color: var(--offwhite); border-color: rgba(255,255,255,0.3); }
+    .lang-btn { background: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; color: var(--offwhite); font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.08em; padding: 0.25rem 0.5rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
+    .lang-btn:hover { border-color: var(--rust); color: var(--rust); }
     .lang-btn.active { background: var(--rust); border-color: var(--rust); color: var(--offwhite); }
+    .nav-mobile .lang-btn { font-size: 1.8rem; border: none; padding: 0.3rem; background: none; }
+    .nav-mobile .lang-btn.active { background: none; border: none; transform: scale(1.2); }
 
     /* Hide all lang elements by default, show only active */
     [data-lang] { display: none; }
