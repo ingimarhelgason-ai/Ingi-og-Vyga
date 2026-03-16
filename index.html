@@ -272,6 +272,12 @@
     :root[data-active-lang="lt"] span[data-lang="lt"] { display: inline !important; }
 
     @media (max-width: 768px) { nav .lang-switcher { display: none; } }
+    .hero-lang-switcher { display: none; }
+    @media (max-width: 768px) {
+      .hero-lang-switcher { display: flex; gap: 0.8rem; margin-top: 1.8rem; }
+      .hero-lang-switcher .lang-btn { font-size: 1.8rem; border: none; padding: 0.2rem; background: none; opacity: 0.4; }
+      .hero-lang-switcher .lang-btn.active { opacity: 1; transform: scale(1.15); }
+    }
 </style>
 </head>
 <body>
@@ -341,6 +347,12 @@
       <a href="#team" class="btn-ghost" data-lang="is">Um okkur</a>
       <a href="#team" class="btn-ghost" data-lang="da">Om os</a>
       <a href="#team" class="btn-ghost" data-lang="lt">Apie mus</a>
+    </div>
+    <div class="hero-lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">🇬🇧</button>
+      <button class="lang-btn" onclick="setLang('is')">🇮🇸</button>
+      <button class="lang-btn" onclick="setLang('da')">🇩🇰</button>
+      <button class="lang-btn" onclick="setLang('lt')">🇱🇹</button>
     </div>
   </div>
   <div class="hero-right">
