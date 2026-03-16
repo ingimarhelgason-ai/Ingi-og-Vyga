@@ -27,6 +27,9 @@
     .nav-mobile a { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.1em; color: var(--offwhite); text-decoration: none; }
     .nav-mobile a:hover { color: var(--rust); }
     .nav-mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; color: var(--offwhite); cursor: pointer; background: none; border: none; }
+    .nav-mobile .lang-switcher { display: flex !important; gap: 1rem; margin-top: 0; }
+    .nav-mobile .lang-btn { font-size: 2rem; border: none; padding: 0.3rem; background: none; opacity: 0.4; }
+    .nav-mobile .lang-btn.active { opacity: 1; transform: scale(1.2); background: none; border: none; }
 
     /* HERO */
     .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
@@ -251,15 +254,13 @@
     .lang-btn { background: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; color: var(--offwhite); font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.08em; padding: 0.25rem 0.5rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
     .lang-btn:hover { border-color: var(--rust); color: var(--rust); }
     .lang-btn.active { background: var(--rust); border-color: var(--rust); color: var(--offwhite); }
-    .nav-mobile .lang-btn { font-size: 1.8rem; border: none; padding: 0.3rem; background: none; }
-    .nav-mobile .lang-btn.active { background: none; border: none; transform: scale(1.2); }
 
-    /* Hide all lang elements by default, show only active */
-    [data-lang] { display: none; }
-    :root[data-active-lang="en"] [data-lang="en"] { display: revert; }
-    :root[data-active-lang="is"] [data-lang="is"] { display: revert; }
-    :root[data-active-lang="da"] [data-lang="da"] { display: revert; }
-    :root[data-active-lang="lt"] [data-lang="lt"] { display: revert; }
+    [data-lang] { display: none !important; }
+    :root[data-active-lang="en"] [data-lang="en"] { display: revert !important; }
+    :root[data-active-lang="is"] [data-lang="is"] { display: revert !important; }
+    :root[data-active-lang="da"] [data-lang="da"] { display: revert !important; }
+    :root[data-active-lang="lt"] [data-lang="lt"] { display: revert !important; }
+    /* Lang switcher buttons never have data-lang so always show */
 
     @media (max-width: 768px) { nav .lang-switcher { display: none; } }
 </style>
@@ -303,7 +304,7 @@
   <a href="#contact" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="is">Hafðu samband</a>
   <a href="#contact" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="da">Kontakt</a>
   <a href="#contact" onclick="document.getElementById('mobileNav').classList.remove('open')" data-lang="lt">Susisiekite</a>
-  <div class="lang-switcher" style="margin-top:2rem;">
+  <div class="lang-switcher">
     <button class="lang-btn active" onclick="setLang('en')">🇬🇧</button>
     <button class="lang-btn" onclick="setLang('is')">🇮🇸</button>
     <button class="lang-btn" onclick="setLang('da')">🇩🇰</button>
