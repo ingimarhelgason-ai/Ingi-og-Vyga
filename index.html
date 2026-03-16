@@ -28,7 +28,7 @@
     .nav-mobile a:hover { color: var(--rust); }
     .nav-mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; color: var(--offwhite); cursor: pointer; background: none; border: none; }
     .nav-mobile .lang-switcher { display: flex !important; gap: 1rem; margin-top: 0; }
-    .nav-mobile .lang-btn { font-size: 2rem; border: none; padding: 0.3rem; background: none; opacity: 0.4; }
+    .nav-mobile .lang-btn { font-size: 2rem; border: none; padding: 0.3rem; background: none; opacity: 0.45; }
     .nav-mobile .lang-btn.active { opacity: 1; transform: scale(1.2); background: none; border: none; }
 
     /* HERO */
@@ -260,7 +260,16 @@
     :root[data-active-lang="is"] [data-lang="is"] { display: revert !important; }
     :root[data-active-lang="da"] [data-lang="da"] { display: revert !important; }
     :root[data-active-lang="lt"] [data-lang="lt"] { display: revert !important; }
-    /* Lang switcher buttons never have data-lang so always show */
+    strong[data-lang] { display: none !important; }
+    :root[data-active-lang="en"] strong[data-lang="en"] { display: block !important; }
+    :root[data-active-lang="is"] strong[data-lang="is"] { display: block !important; }
+    :root[data-active-lang="da"] strong[data-lang="da"] { display: block !important; }
+    :root[data-active-lang="lt"] strong[data-lang="lt"] { display: block !important; }
+    span[data-lang] { display: none !important; }
+    :root[data-active-lang="en"] span[data-lang="en"] { display: inline !important; }
+    :root[data-active-lang="is"] span[data-lang="is"] { display: inline !important; }
+    :root[data-active-lang="da"] span[data-lang="da"] { display: inline !important; }
+    :root[data-active-lang="lt"] span[data-lang="lt"] { display: inline !important; }
 
     @media (max-width: 768px) { nav .lang-switcher { display: none; } }
 </style>
